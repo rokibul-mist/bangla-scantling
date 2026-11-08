@@ -9,6 +9,9 @@ venv/
 .venv/
 ENV/
 
+# Binaries / Tools
+tools/
+
 # Temporary / Scratch
 temp_*
 *.log
