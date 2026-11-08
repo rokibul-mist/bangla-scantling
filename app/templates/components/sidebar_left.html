@@ -1,0 +1,79 @@
+<!-- Left Sidebar (Vertical Navigation) - Compact & Narrow -->
+<aside class="w-full md:w-48 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40">
+  <!-- Brand & System Logo -->
+  <div class="p-2.5 border-b border-slate-200 flex items-center gap-2 bg-white">
+    <div class="w-7 h-7 bg-blue-600 rounded flex items-center justify-center text-white font-black text-xs tracking-tighter shrink-0 shadow-xs">
+      BD
+    </div>
+    <div class="overflow-hidden">
+      <div class="text-[11.5px] font-bold text-slate-800 tracking-tight leading-tight truncate">Ship Scantlings</div>
+      <div class="text-[9.5px] text-slate-500 font-medium truncate">DOS SRO 308/2001</div>
+    </div>
+  </div>
+
+  <!-- Navigation Items (Vertical Stack) -->
+  <nav class="p-1.5 space-y-0.5 flex-1 overflow-y-auto">
+    <div class="px-2 py-1 text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Navigation</div>
+    <button class="nav-tab active w-full !text-[11.5px] !py-1.5 !px-2" data-tab="dashboard">
+      <span class="truncate">Dashboard</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2 flex items-center justify-between" data-tab="vessel-db">
+      <span class="truncate">Vessel Database</span>
+      <span id="nav-vessel-count" class="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-blue-100 text-blue-800">DB</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="sheet2-calc">
+      <span class="truncate">Detail Calculations</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="lightship">
+      <span class="truncate">Lightship Calculation</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="strength">
+      <span class="truncate">Hull Strength</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2 flex items-center justify-between" data-tab="tonnage-calc">
+      <span class="truncate">Tonnage (ISO 2001)</span>
+      <span class="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-amber-100 text-amber-800">GT/NT</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="application-form">
+      <span class="truncate">Application Form</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="empirical-tables">
+      <span class="truncate">Empirical Tables</span>
+    </button>
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="calc-brain">
+      <span class="truncate">Calculation Brain</span>
+    </button>
+  </nav>
+
+  <!-- STATUTORY RULES & ACTS (13 BOOKS) CARD - UP-RIGHT & IN LEFT SIDEBAR -->
+  <div class="p-2 border-t border-slate-200 bg-gradient-to-b from-amber-50 to-amber-100/70">
+    <button 
+      id="btn-sidebar-statutory-drawer"
+      onclick="window.statutoryDrawer && window.statutoryDrawer.open()"
+      class="w-full p-2 bg-amber-600 hover:bg-amber-700 text-white rounded-md shadow-xs transition-all hover:shadow-sm cursor-pointer flex flex-col gap-1 text-left group"
+      title="Open Bangladesh Inland Statutory Rules, Laws &amp; ISO 1976 Reference Library (Alt+R)"
+    >
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-amber-200 group-hover:scale-110 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span class="text-[11px] font-bold tracking-tight text-white uppercase">Statutory Rules</span>
+        </div>
+        <span class="text-[9px] bg-amber-800/80 text-amber-100 font-mono font-bold px-1.5 py-0.2 rounded">13 Books</span>
+      </div>
+      <div class="text-[9.5px] text-amber-100/95 leading-tight font-medium">
+        Rules 1–227, Tables &amp; ISO 1976
+      </div>
+      <div class="text-[8.5px] text-amber-200/90 flex items-center justify-between pt-1 mt-0.5 border-t border-amber-500/40">
+        <span>Click to Search &amp; View</span>
+        <kbd class="font-mono bg-amber-700/80 px-1 rounded text-[8px] text-white">Alt+R</kbd>
+      </div>
+    </button>
+  </div>
+
+  <!-- Sidebar Bottom Status / Engineering Credit (Bottom-Left Corner) -->
+  <div class="p-2.5 border-t border-slate-200 bg-slate-50/90 text-[10px] text-slate-500 hidden md:block">
+    <div class="text-[8.5px] uppercase font-bold text-slate-400 tracking-wider">Engineering Credit</div>
+    <div class="font-bold text-slate-800 tracking-tight truncate mt-0.5">Prepared by MD Rokibul Hasan</div>
+    <div class="text-[9.5px] text-blue-700 font-semibold truncate">Naval Architect, MIST</div>
+  </div>
+</aside>

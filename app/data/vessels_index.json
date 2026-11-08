@@ -1,0 +1,95 @@
+[
+  {
+    "id": "vsl_90dba5d9b176",
+    "vessel_name": "M. V. YOUNUS MOLLA-1",
+    "vessel_type": "Steel Body Cargo Vessel",
+    "hull_type": "Single Hull",
+    "route": "Inland & bay crossing",
+    "owner": "MOHAMMAD HOSAIN SUMON",
+    "yard_ref": "",
+    "notes": "",
+    "created_at": "2026-11-04T16:55:27.796559",
+    "updated_at": "2026-11-04T16:55:27.796559",
+    "particulars": {
+      "lbp": 69.85,
+      "breadth": 15.24,
+      "depth": 4.87,
+      "draft": 4.0,
+      "cb": 0.75,
+      "frame_spacing": 550.0,
+      "speed": 10.0
+    },
+    "results_summary": {
+      "net_steel_tonnes": 704.38,
+      "lightship_tonnes": 1098.83,
+      "compliant_count": 0,
+      "total_count": 0,
+      "compliance_pct": 94.8,
+      "status": "COMPLIANT",
+      "factor_kt": 1.4,
+      "factor_kz": 1.4
+    }
+  },
+  {
+    "id": "vsl_1c85ca93e73d",
+    "vessel_name": "MV.CROWN MARINERS-65",
+    "vessel_type": "Steel Body Cargo Vessel",
+    "hull_type": "Single Hull",
+    "route": "Inland & bay crossing",
+    "owner": "MD. ALAMGIR KABIR",
+    "yard_ref": "",
+    "notes": "",
+    "created_at": "2026-11-04T12:06:47.490090",
+    "updated_at": "2026-11-04T12:06:47.490090",
+    "particulars": {
+      "lbp": 69.85,
+      "breadth": 13.41,
+      "depth": 5.18,
+      "draft": 4.0,
+      "cb": 0.75,
+      "frame_spacing": 550.0,
+      "speed": 10.0
+    },
+    "results_summary": {
+      "net_steel_tonnes": 704.38,
+      "lightship_tonnes": 1098.83,
+      "compliant_count": 0,
+      "total_count": 0,
+      "compliance_pct": 94.8,
+      "status": "COMPLIANT",
+      "factor_kt": 1.4,
+      "factor_kz": 1.4
+    }
+  },
+  {
+    "id": "vsl_4fe36194f195",
+    "vessel_name": "MV.CROWN MARINERS-64",
+    "vessel_type": "Steel Body Cargo Vessel",
+    "hull_type": "Single Hull",
+    "route": "Inland & bay crossing",
+    "owner": "MD. ALAMGIR KABIR",
+    "yard_ref": "",
+    "notes": "",
+    "created_at": "2026-11-04T11:27:50.023497",
+    "updated_at": "2026-11-04T11:27:50.023497",
+    "particulars": {
+      "lbp": 69.85,
+      "breadth": 13.42,
+      "depth": 5.18,
+      "draft": 4.0,
+      "cb": 0.75,
+      "frame_spacing": 550.0,
+      "speed": 10.0
+    },
+    "results_summary": {
+      "net_steel_tonnes": 704.38,
+      "lightship_tonnes": 1098.83,
+      "compliant_count": 0,
+      "total_count": 0,
+      "compliance_pct": 96.1,
+      "status": "COMPLIANT",
+      "factor_kt": 1.4,
+      "factor_kz": 1.4
+    }
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "name": "Bangladesh Inland Vessel Scantlings Suite",
+  "short_name": "BanglaScantling",
+  "description": "Statutory structural scantlings and lightship estimation per Bangladesh Inland Shipping Rules 2001 & SRO 308",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/static/icon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}

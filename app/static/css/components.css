@@ -1,0 +1,123 @@
+/* Compact UI Components, Badges, Inputs & Tabs */
+.compact-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #475569;
+  background-color: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.compact-title-primary {
+  color: #1e40af;
+  background-color: #eff6ff;
+}
+
+.compact-title-success {
+  color: #065f46;
+  background-color: #ecfdf5;
+}
+
+/* Compact input controls */
+.compact-input {
+  width: 100%;
+  font-size: 12px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #0f172a;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.compact-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.compact-select {
+  width: 100%;
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.compact-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Badges */
+.badge-comp {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background-color: #d1fae5;
+  color: #065f46;
+  letter-spacing: 0.02em;
+}
+
+.badge-def {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background-color: #fee2e2;
+  color: #991b1b;
+  letter-spacing: 0.02em;
+}
+
+.badge-neutral {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+/* Tab Navigation - Left Sidebar Vertical Layout */
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+.nav-tab.active {
+  color: #1d4ed8;
+  background-color: #eff6ff;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px #bfdbfe;
+}

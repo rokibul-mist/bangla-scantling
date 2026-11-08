@@ -1,0 +1,95 @@
+diff --git a/app/api/v1/endpoints_state.py b/app/api/v1/endpoints_state.py
+--- a/app/api/v1/endpoints_state.py
++++ b/app/api/v1/endpoints_state.py
+@@ -32,7 +32,18 @@ async def save_state(
+     """
+     try:
+         body = await request.json()
++    except Exception as e:
++        return JSONResponse(
++            status_code=400,
++            content={"status": "error", "message": f"Invalid JSON payload: {str(e)}"}
++        )
++
++    if not isinstance(body, dict):
++        return JSONResponse(
++            status_code=400,
++            content={"status": "error", "message": "Invalid state payload: body must be a JSON object (dictionary)"}
++        )
++
++    try:
+         success = state_service.save_state(body)
+         if success:
+             return JSONResponse(content={"status": "ok", "message": "State saved successfully"})
+diff --git a/app/services/state_service.py b/app/services/state_service.py
+--- a/app/services/state_service.py
++++ b/app/services/state_service.py
+@@ -16,6 +16,8 @@ class StateService:
+         saved = self.state_repo.get_saved_state()
++        if not isinstance(saved, dict):
++            saved = {}
+         if saved:
+             for k, v in saved.items():
+                 if isinstance(v, dict) and k in master and isinstance(master[k], dict):
+@@ -30,4 +32,6 @@ class StateService:
+     def save_state(self, state_data: Dict[str, Any]) -> bool:
++        if not isinstance(state_data, dict):
++            return False
+         return self.state_repo.save_state(state_data)
+diff --git a/app/api/v1/endpoints_calculation.py b/app/api/v1/endpoints_calculation.py
+--- a/app/api/v1/endpoints_calculation.py
++++ b/app/api/v1/endpoints_calculation.py
+@@ -15,5 +15,22 @@ async def calculate_state(
+     """
+-    body = await request.json()
+-    updated_state = calc_service.compute_all_calculations(body)
+-    return JSONResponse(content=updated_state)
++    try:
++        body = await request.json()
++    except Exception as e:
++        return JSONResponse(
++            status_code=400,
++            content={"status": "error", "message": f"Invalid JSON payload: {str(e)}"}
++        )
++
++    if not isinstance(body, dict):
++        return JSONResponse(
++            status_code=400,
++            content={"status": "error", "message": "Invalid calculation payload: body must be a JSON object (dictionary)"}
++        )
++
++    try:
++        updated_state = calc_service.compute_all_calculations(body)
++        return JSONResponse(content=updated_state)
++    except Exception as e:
++        return JSONResponse(
++            status_code=500,
++            content={"status": "error", "message": str(e)}
++        )
+diff --git a/app/repositories/state_repository.py b/app/repositories/state_repository.py
+--- a/app/repositories/state_repository.py
++++ b/app/repositories/state_repository.py
+@@ -39,5 +39,8 @@ class StateRepository:
+                 with open(self.saved_state_file, 'r', encoding='utf-8') as f:
+-                    return json.load(f)
++                    data = json.load(f)
++                    if isinstance(data, dict):
++                        return data
++                    return None
+             except Exception:
+                 return None
+         return None
+@@ -57,4 +60,6 @@ class StateRepository:
+     def save_state(self, state: Dict[str, Any]) -> bool:
++        if not isinstance(state, dict):
++            return False
+         try:
+             with open(self.saved_state_file, 'w', encoding='utf-8') as f:
+diff --git a/app/services/calculation_service.py b/app/services/calculation_service.py
+--- a/app/services/calculation_service.py
++++ b/app/services/calculation_service.py
+@@ -30,4 +30,6 @@ class CalculationService:
+         """
++        if not isinstance(state, dict):
++            state = {}
+         inputs = state.get('dashboard_inputs', {}) or {}

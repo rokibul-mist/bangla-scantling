@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bangladesh Inland Vessel Statutory Compliance & Scantlings</title>
+
+  <!-- Tailwind CSS CDN -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+
+    tailwind.config = {
+
+      theme: {
+
+        extend: {
+
+          fontFamily: {
+
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+
+            mono: ['JetBrains Mono', 'monospace'],
+
+          }
+
+        }
+
+      }
+
+    }
+
+  </script>
+
+  <!-- Custom Style with no subheading lines and compact light theme -->
+
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  
+
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col md:flex-row antialiased">
+
+
+
+  <!-- Left Sidebar (Vertical Navigation) -->
+
+  <!-- Left Sidebar (Vertical Navigation) - Compact & Narrow -->
+
+<aside class="w-full md:w-48 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40">
+
+  <!-- Brand & System Logo -->
+
+  <div class="p-2.5 border-b border-slate-200 flex items-center gap-2 bg-white">
+
+    <div class="w-7 h-7 bg-blue-600 rounded flex items-center justify-center text-white font-black text-xs tracking-tighter shrink-0 shadow-xs">
+
+      BD
+
+    </div>
+
+    <div class="overflow-hidden">
+
+      <div class="text-[11.5px] font-bold text-slate-800 tracking-tight leading-tight truncate">Ship Scantlings</div>
+
+      <div class="text-[9.5px] text-slate-500 font-medium truncate">DOS SRO 308/2001</div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Navigation Items (Vertical Stack) -->
+
+  <nav class="p-1.5 space-y-0.5 flex-1 overflow-y-auto">
+
+    <div class="px-2 py-1 text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Navigation</div>
+
+    <button class="nav-tab active w-full !text-[11.5px] !py-1.5 !px-2" data-tab="dashboard">
+
+      <span class="truncate">Dashboard</span>
+
+    </button>
+
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2 flex items-center justify-between" data-tab="vessel-db">
+  <span class="truncate">Vessel Database</span>
+  <span id="nav-vessel-count" class="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-blue-100 text-blue-800">DB</span>
+</button>
+
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="sheet2-calc">
+
+      <span class="truncate">Detail Calculations</span>
+
+    </button>
+
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="lightship">
+
+      <span class="truncate">Lightship Calculation</span>
+
+    </button>
+
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="strength">
+
+      <span class="truncate">Hull Strength</span>
+
+    </button>
+
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="application-form">
+
+      <span class="truncate">Application Form</span>
+
+    </button>
+
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="empirical-tables">
+
+      <span class="truncate">Empirical Tables</span>
+
+    </button>
+
+    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="calc-brain">
+
+      <span class="truncate">Calculation Brain</span>
+
+    </button>
+
+  </nav>
+
+
+
+  <!-- Sidebar Bottom Status / Info -->
+
+  <div class="p-2.5 border-t border-slate-200 bg-slate-50/60 text-[10px] text-slate-500 hidden md:block">
+
+    <div class="font-semibold text-slate-700 truncate">Bangladesh DOS Rules</div>
+
+    <div class="text-[9.5px] text-slate-400 mt-0.5 truncate">Rules 8 - 147 Compliance</div>
+
+  </div>
+
+</aside>
+
+
+
+  <!-- Center Workspace (Main Content Column) -->
+
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- Top Sticky Header -->
+
+    <!-- Top Sticky Header -->
+
+<header class="bg-white border-b border-slate-200 sticky top-0 z-30 no-print">
+  <div class="px-5 py-2.5 flex flex-wrap items-center justify-between gap-3">
+    <!-- Vessel Identity & Real-time Verification Status -->
+    <div class="flex items-center gap-3">
+      <span class="text-sm font-bold text-slate-800 tracking-tight" id="top-vessel-name">M.V. CROWN MARINERS - 67</span>
+      <div id="header-verification-badge" onclick="runVerificationAudit(true)" class="flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-bold border transition-colors cursor-pointer bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100" title="Click to inspect real-time cross-deliverable verification audit">
+        <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+        <span>ALL DELIVERABLES INLINE (86/86)</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="text-[11px] text-slate-500 font-medium hidden md:block">Inland Shipping Ordinance 1976 &amp; SRO 308/Law-2001 (Rules 8 - 147)</div>
+      <button onclick="runVerificationAudit(true)" class="px-2.5 py-1 text-[11px] font-semibold bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 rounded shadow-2xs flex items-center gap-1" title="Run instant statutory and calculation harmonization check">
+        <span>Verify Deliverables</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+
+    <!-- Main Workspace Area -->
+
+    <main class="p-4 flex-1 w-full max-w-full">
+
+      
+
+  <!-- 1. Dashboard -->
+
+  <div id="tab-content-dashboard" class="tab-content"></div>
+
+  <!-- 2. Vessel Database -->
+  <div id="tab-content-vessel-db" class="tab-content hidden"></div>
+
+
+
+  <!-- 2. Detail Calculations -->
+
+  <div id="tab-content-sheet2-calc" class="tab-content hidden"></div>
+
+
+
+  <!-- 3. Lightship Calculation -->
+
+  <div id="tab-content-lightship" class="tab-content hidden"></div>
+
+  <!-- 3.5 Hull Strength -->
+  <div id="tab-content-strength" class="tab-content hidden"></div>
+
+
+
+  <!-- 4. Application Form -->
+
+  <div id="tab-content-application-form" class="tab-content hidden"></div>
+
+
+
+  <!-- 5. Empirical Rules Tables -->
+
+  <div id="tab-content-empirical-tables" class="tab-content hidden"></div>
+
+
+
+  <!-- 6. Calculation Brain -->
+
+  <div id="tab-content-calc-brain" class="tab-content hidden"></div>
+
+
+
+
+
+    </main>
+
+
+
+    <!-- Compact Footer -->
+
+    <!-- Compact Footer -->
+
+<footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500 no-print">
+
+  <div class="px-4 flex flex-wrap justify-between items-center gap-2">
+
+    <div>
+
+      Department of Shipping (DOS) Inland Vessel Statutory Compliance System • SRO 308/Law-2001
+
+    </div>
+
+    <div class="text-[11px] text-slate-400">
+
+      All inputs live-synced in Dashboard • Real-time Section Modulus &amp; Lightship Weight Derivations
+
+    </div>
+
+  </div>
+
+</footer>
+
+  </div>
+
+
+
+  <!-- Right Sidebar (Export Reports & Quick Actions) -->
+
+  <!-- Right Sidebar (Export Reports & Quick Actions) - Compact & Narrow -->
+
+<aside class="w-full md:w-48 bg-white border-t md:border-t-0 md:border-l border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40">
+
+  <div class="p-2.5 border-b border-slate-200">
+
+    <div class="text-[11px] font-bold text-slate-800 tracking-tight uppercase">Controls & State</div>
+
+    <div class="text-[9.5px] text-slate-500">Project Controls & State</div>
+
+  </div>
+
+
+
+  <!-- Actions -->
+
+  <div class="p-2 space-y-2 flex-1 overflow-y-auto">
+
+    <!-- PROJECT STATE & AUTOSAVE CONTROLS -->
+
+    <div class="bg-slate-50 p-2 rounded border border-slate-200 mb-2">
+
+      <div class="flex items-center justify-between mb-1.5">
+
+        <span class="text-[11px] font-bold text-slate-800">Project State</span>
+
+        <!-- Autosave Toggle Switch -->
+
+        <label class="flex items-center gap-1 cursor-pointer select-none" title="Toggle automatic saving">
+
+          <span class="text-[9.5px] font-semibold text-slate-600">Autosave</span>
+
+          <div class="relative inline-block w-6 h-3.5">
+
+            <input type="checkbox" id="toggle-autosave" class="sr-only peer" checked onchange="handleAutosaveToggle(this.checked)">
+
+            <div class="w-6 h-3.5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-2.5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[1px] after:left-[1px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-emerald-600"></div>
+
+          </div>
+
+        </label>
+
+      </div>
+
+
+
+      <!-- Manual Save Button -->
+
+      <button id="btn-save-project" onclick="saveProjectState(true)" class="w-full px-2 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-[11px] font-bold shadow-xs transition text-center">
+
+        <span id="save-btn-text">Save Calculation</span>
+
+      </button>
+
+
+
+      <!-- Status & Last Saved Timestamp Indicator -->
+
+      <div id="save-status-container" class="text-[9.5px] text-slate-500 text-center mt-1 flex items-center justify-center gap-1">
+
+        <span id="save-status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+
+        <span id="save-status-text" class="truncate">Changes saved</span>
+
+      </div>
+      <button onclick="openSaveVesselModal()" class="w-full mt-2 px-2 py-1 bg-slate-800 hover:bg-slate-900 text-white rounded text-[10.5px] font-semibold transition text-center cursor-pointer flex items-center justify-center gap-1 shadow-2xs" title="Save this vessel calculation into the permanent Vessel Database">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+        <span>Save to Vessel DB</span>
+      </button>
+
+      <button onclick="if (window.navigation) window.navigation.switchTab('vessel-db');" class="w-full mt-1 px-2 py-1 border border-slate-300 hover:bg-slate-100 text-slate-700 rounded text-[10.5px] font-semibold transition text-center cursor-pointer flex items-center justify-center gap-1" title="Browse and open stored vessels from the database">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        <span>Browse Vessel DB</span>
+      </button>
+
+    </div>
+
+
+
+    <!-- ADVANCED DETAIL CALCULATION PDF GENERATOR -->
+
+    <div class="bg-blue-50/70 p-2 rounded border border-blue-200 mb-2">
+
+      <div class="text-[10px] font-bold text-blue-900 uppercase tracking-wider mb-1 flex items-center gap-1">
+
+        Engineering Booklet
+
+      </div>
+
+      <button 
+
+        id="btn-view-detail-calc-pdf" 
+
+        onclick="openDetailCalcPdfModal()" 
+
+        class="w-full px-2 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-[11px] font-bold shadow-xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
+
+        title="View Technical PDF Booklet: Cover Page + Dashboard + All Calculation Sheets with Vector Figures"
+
+      >
+
+        <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+
+        <span>View Detail Calc PDF</span>
+
+      </button>
+
+      <div class="text-[9px] text-blue-700/80 text-center mt-1 font-medium">Cover + Dashboard + Figures</div>
+
+    </div>
+
+
+
+    <div class="pt-1 text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Utilities</div>
+
+    <!-- Auto-Comply All Scantlings Button -->
+    <button id="btn-auto-comply" onclick="window.autoComplyModal && window.autoComplyModal.open()" class="w-full px-2 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[10.5px] font-semibold transition text-left cursor-pointer flex items-center justify-between shadow-2xs mb-1.5" title="Automatically size all non-compliant plates and stiffeners to comply with safety margin">
+      <span>Auto-Comply All Scantlings</span>
+      
+    </button>
+
+
+
+    <!-- Save .dos Project File Button -->
+
+    <button id="btn-save-dos" class="w-full px-2 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-[10.5px] font-semibold transition text-left cursor-pointer flex items-center justify-between shadow-2xs mb-1.5" title="Save complete project state in .dos format">
+
+      <span>Save Project (.dos)</span>
+
+      
+
+    </button>
+
+
+
+    <!-- Open/Import .dos Project File Button -->
+
+    <button id="btn-open-dos" class="w-full px-2 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded text-[10.5px] font-semibold transition text-left cursor-pointer flex items-center justify-between mb-1.5" title="Open or import a saved .dos project file">
+
+      <span>Open Project (.dos)</span>
+
+      
+
+    </button>
+
+    <input type="file" id="input-open-dos" accept=".dos,.json" class="hidden">
+
+
+
+    <!-- Reset Button -->
+
+    <button id="btn-reset-default" class="w-full px-2 py-1.5 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded text-[10.5px] font-medium transition text-left" title="Reset to Excel Master Defaults">
+
+      Reset Defaults
+
+    </button>
+
+
+
+    <!-- Corner Seals & Signatures -->
+
+    <div class="pt-2 border-t border-slate-200 mt-1.5 space-y-2">
+
+      <div class="text-[9.5px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+
+        <span>Official Engineering Seals</span>
+
+      </div>
+
+      
+
+      <!-- Designer Seal Card -->
+
+      <div class="bg-slate-50 p-2 rounded border border-slate-200 shadow-2xs">
+
+        <div class="flex items-center justify-between mb-1.5">
+
+          <div class="flex items-center gap-1.5">
+
+            <span class="text-[10.5px] font-bold text-slate-800">Designer Seal</span>
+
+            <span id="badge-designer-seal" class="text-[9px] px-1.5 py-0.2 rounded font-semibold bg-slate-200 text-slate-600">Default Seal</span>
+
+          </div>
+
+          <button id="btn-clear-designer-seal" onclick="clearSeal('designer')" class="text-[9.5px] text-rose-600 hover:text-rose-800 hidden font-bold cursor-pointer">Reset</button>
+
+        </div>
+
+        <div id="preview-designer-seal" class="mb-1.5 p-1 bg-white border border-slate-200 rounded text-center flex items-center justify-center min-h-[52px]">
+
+          <img id="img-designer-seal" src="/static/designer_seal_default.png" alt="Designer Seal" class="max-h-12 max-w-full mx-auto object-contain"/>
+
+        </div>
+
+        <label for="upload-designer-seal" class="block cursor-pointer">
+
+          <input type="file" id="upload-designer-seal" accept="image/png,image/jpeg,image/webp" class="sr-only" onclick="this.value=null;" onchange="handleSealUpload('designer', event)">
+
+          <span class="w-full py-1 px-2 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 rounded text-[10px] font-bold block text-center transition cursor-pointer">
+
+            Upload Custom Seal PNG
+
+          </span>
+
+        </label>
+
+      </div>
+
+
+
+      <!-- Checker Seal Card -->
+
+      <div class="bg-slate-50 p-2 rounded border border-slate-200 shadow-2xs">
+
+        <div class="flex items-center justify-between mb-1.5">
+
+          <div class="flex items-center gap-1.5">
+
+            <span class="text-[10.5px] font-bold text-slate-800">Checker Seal</span>
+
+            <span id="badge-checker-seal" class="text-[9px] px-1.5 py-0.2 rounded font-semibold bg-slate-200 text-slate-600">Default Seal</span>
+
+          </div>
+
+          <button id="btn-clear-checker-seal" onclick="clearSeal('checker')" class="text-[9.5px] text-rose-600 hover:text-rose-800 hidden font-bold cursor-pointer">Reset</button>
+
+        </div>
+
+        <div id="preview-checker-seal" class="mb-1.5 p-1 bg-white border border-slate-200 rounded text-center flex items-center justify-center min-h-[52px]">
+
+          <img id="img-checker-seal" src="/static/checker_seal_default.png" alt="Checker Seal" class="max-h-12 max-w-full mx-auto object-contain"/>
+
+        </div>
+
+        <label for="upload-checker-seal" class="block cursor-pointer">
+
+          <input type="file" id="upload-checker-seal" accept="image/png,image/jpeg,image/webp" class="sr-only" onclick="this.value=null;" onchange="handleSealUpload('checker', event)">
+
+          <span class="w-full py-1 px-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 rounded text-[10px] font-bold block text-center transition cursor-pointer">
+
+            Upload Custom Seal PNG
+
+          </span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Quick Status Pill at Bottom of Right Sidebar -->
+
+  <div class="p-2 border-t border-slate-200 bg-slate-50/60 text-[10px] text-slate-500 hidden md:block">
+
+    <div class="flex items-center gap-1.5 text-emerald-700 font-bold">
+
+      <span>✓</span> Ready for Export
+
+    </div>
+
+    <div class="text-[9px] text-slate-400 mt-0.5 truncate">Calculation Engine Active</div>
+
+  </div>
+
+</aside>
+
+
+
+  <!-- App JavaScript Modules -->
+
+  <!-- Core Infrastructure -->
+
+<script src="/static/js/core/EventBus.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/core/AppStore.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/services/ApiClient.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/services/DosFileManager.js?v=20261105_strength_v2"></script>
+<script src="/static/js/services/AutoComplyModal.js?v=20261105_strength_v2"></script>
+
+
+
+<!-- Naval Engineering Calculations & Structural Catalog -->
+
+<script src="/static/js/structural_catalog.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/calc.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/engine/NavalCalcEngine.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/calc_brain_engine.js?v=20261105_strength_v2"></script>
+
+
+
+<!-- Reusable Components -->
+
+<script src="/static/js/components/SealManager.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/components/PdfViewerModal.js?v=20261105_strength_v2"></script>
+<script src="/static/js/components/SaveVesselModal.js?v=20261105_strength_v2"></script>
+<script src="/static/js/components/VerificationModal.js?v=20261105_strength_v2"></script>
+<script src="/static/js/views/VesselDbView.js?v=20261105_strength_v2"></script>
+
+<!-- Modular Tab Views -->
+
+<script src="/static/js/views/DashboardView.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/views/DetailCalcView.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/views/LightshipView.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/views/StrengthView.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/views/ApplicationFormView.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/views/EmpiricalTablesView.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/views/CalcBrainView.js?v=20261105_strength_v2"></script>
+
+
+
+<!-- Navigation & Application Coordinator -->
+
+<script src="/static/js/core/Navigation.js?v=20261105_strength_v2"></script>
+
+<script src="/static/js/app.js?v=20261105_strength_v2"></script>
+
+  
+
+</body>
+
+</html>
+
