@@ -4,7 +4,7 @@ Statutory Reference: Rules 209 & 223, Schedule Tables 66 & 67 (SRO 308/Law-2001 
 """
 
 import math
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple, Optional, Union
 from app.domain.models.strength import (
     MidshipElement,
     BendingMoments,
