@@ -550,6 +550,23 @@ function renderTonnage() {
           </div>
         </div>
 
+        <!-- Action Bar: Calculate Tonnage (Immediately after Underdeck & Superstructures) -->
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50/50 p-2.5 rounded-lg border border-blue-200/80 flex items-center justify-between shadow-2xs">
+          <div class="text-xs">
+            <span class="font-bold text-blue-950 block text-[11.5px]">ISO 2001 Tonnage Engine</span>
+            <span class="text-[10px] text-slate-500">Recalculate Gross Tonnage (GT) and Net Tonnage (NT)</span>
+          </div>
+          <button 
+            type="button" 
+            id="btn-recalculate-tonnage"
+            onclick="triggerTonnageCalculation(event)" 
+            class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded text-xs font-bold shadow-xs hover:shadow transition-all flex items-center gap-1.5 cursor-pointer"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span id="btn-tonnage-text">Calculate Tonnage</span>
+          </button>
+        </div>
+
         <!-- Panel 3: Appendages & Excluded Spaces (Rule 14(2) & Rule 10(5)) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <!-- Appendages -->

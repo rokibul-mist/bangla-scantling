@@ -632,9 +632,19 @@ function renderDashboard() {
     </div>
 
     <!-- UNIFIED VESSEL PARTICULARS & STATUTORY INPUT TABLE (CONSOLIDATED) -->
-    <div class="bg-white p-2.5 rounded border border-slate-200 mb-3 shadow-2xs">
-      <div class="mb-2">
+    <div class="bg-white p-2.5 rounded border border-slate-200 mb-3 shadow-2xs" onkeydown="if(event.key === 'Enter') { event.preventDefault(); triggerVesselCalculations(event); }">
+      <div class="flex items-center justify-between mb-2 pb-1.5 border-b border-slate-100">
         <div class="compact-title compact-title-primary mb-0 text-[11px] font-bold">VESSEL PRINCIPAL PARTICULARS &amp; STATUTORY INPUT TABLE</div>
+        <button 
+          type="button" 
+          id="btn-recalculate-top"
+          onclick="triggerVesselCalculations(event)" 
+          class="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded text-[10.5px] font-bold shadow-2xs transition flex items-center gap-1 cursor-pointer"
+          title="Compute statutory scantlings for current particulars"
+        >
+          <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <span>Calculate</span>
+        </button>
       </div>
 
       <!-- Unified Grid: Dimensions, Identification, Machinery & Signatories -->
@@ -883,6 +893,32 @@ function renderDashboard() {
               `;
             }).join('')}
           </div>
+        </div>
+      </div>
+
+      <!-- 6. CALCULATION & EVALUATION ACTION BAR (Directly after inputting data) -->
+      <div class="mt-2.5 pt-2 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 bg-gradient-to-r from-slate-50 to-blue-50/50 -mx-2.5 -mb-2.5 px-3 py-2 rounded-b">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-[10px] shadow-2xs">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <div class="text-xs">
+            <span class="font-bold text-slate-800 text-[11.5px]">Statutory Scantlings Computation</span>
+            <span class="text-slate-500 text-[10.5px] ml-1.5 hidden md:inline">• Compute all 76 structural elements, midship modulus &amp; lightship</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button 
+            type="button" 
+            id="btn-recalculate-all"
+            onclick="triggerVesselCalculations(event)" 
+            class="px-5 py-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white rounded text-xs font-bold shadow-xs hover:shadow transition-all flex items-center gap-2 cursor-pointer select-none"
+            title="Execute structural scantling rules, midship strength modulus, lightship, and statutory compliance calculations"
+          >
+            <svg id="calc-btn-icon" class="w-4 h-4 shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span id="calc-btn-text" class="tracking-wide uppercase text-[11px] font-bold">Calculate Scantlings</span>
+          </button>
         </div>
       </div>
     </div>
@@ -1898,4 +1934,97 @@ function renderCoverPage() {
   `;
 }
 
+
+/**
+ * Executes full vessel scantling and statutory calculations with active visual feedback,
+ * top navigation sync, checklist re-evaluation, and automated state persistence.
+ */
+window.triggerVesselCalculations = function(e) {
+  if (e && e.preventDefault) e.preventDefault();
+
+  const btn = document.getElementById('btn-recalculate-all');
+  const btnTop = document.getElementById('btn-recalculate-top');
+  const icon = document.getElementById('calc-btn-icon');
+  const text = document.getElementById('calc-btn-text');
+
+  // Set visual calculating state
+  if (btn) {
+    btn.disabled = true;
+    btn.classList.add('opacity-90', 'cursor-wait');
+  }
+  if (btnTop) {
+    btnTop.disabled = true;
+    btnTop.classList.add('opacity-90', 'cursor-wait');
+  }
+  if (text) text.textContent = 'Calculating...';
+  if (icon) {
+    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />';
+    icon.classList.add('animate-spin');
+  }
+
+  setTimeout(() => {
+    try {
+      // 1. Recalculate complete structural scantlings, stiffeners, rules & lightship
+      recalculateAll(appState);
+
+      // 2. Sync Top Navigation Header
+      if (window.navigation && window.navigation.syncTopHeader) {
+        window.navigation.syncTopHeader(appState);
+      }
+
+      // 3. Update top summary statistics
+      updateTopStats();
+
+      // 4. Re-render Dashboard so all rule calculations, thicknesses, moduli, and statuses refresh
+      renderDashboard();
+
+      // 5. Trigger autosave if available
+      if (typeof triggerAutosaveDebounced === 'function') {
+        triggerAutosaveDebounced();
+      }
+
+      // 6. Show notification toast
+      if (typeof showToastNotification === 'function') {
+        showToastNotification('✓ Scantling & statutory calculations computed successfully!', 'success');
+      }
+
+      // 7. Visual success state on button
+      const newBtn = document.getElementById('btn-recalculate-all');
+      const newIcon = document.getElementById('calc-btn-icon');
+      const newText = document.getElementById('calc-btn-text');
+      if (newBtn) {
+        newBtn.disabled = false;
+        newBtn.classList.remove('opacity-90', 'cursor-wait', 'bg-blue-600', 'hover:bg-blue-700');
+        newBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+      }
+      if (newText) newText.textContent = 'Calculated!';
+      if (newIcon) {
+        newIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />';
+        newIcon.classList.remove('animate-spin');
+      }
+
+      setTimeout(() => {
+        const resetBtn = document.getElementById('btn-recalculate-all');
+        const resetIcon = document.getElementById('calc-btn-icon');
+        const resetText = document.getElementById('calc-btn-text');
+        if (resetBtn) {
+          resetBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+          resetBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+        }
+        if (resetText) resetText.textContent = 'Calculate Scantlings';
+        if (resetIcon) {
+          resetIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>';
+        }
+      }, 2500);
+
+    } catch (err) {
+      console.error('Calculation error:', err);
+      if (typeof showToastNotification === 'function') {
+        showToastNotification('Error during calculation: ' + err.message, 'error');
+      }
+    }
+  }, 200);
+};
+
 window.dashboardView = { render: renderDashboard };
+
