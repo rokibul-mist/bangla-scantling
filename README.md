@@ -1,6 +1,12 @@
-# Bangladesh Inland Vessel Statutory Compliance & Scantlings Suite
+# ShipLab-BD | Bangladesh Inland Vessel Statutory Compliance & Scantlings Suite
+
+<p align="center">
+  <img src="app/static/logo.png" alt="ShipLab-BD Logo" width="520"/>
+</p>
 
 Professional Naval Architecture & Marine Structural Engineering Suite conforming to the **Bangladesh Inland Shipping Rules 2001 (SRO 308/Law-2001)** and **Inland Shipping Ordinance 1976**.
+
+*Prepared by **MD Rokibul Hasan**, Naval Architect, MIST*
 
 ---
 
@@ -11,21 +17,21 @@ The application runs as a **Native Windows Desktop Application** using Windows E
 ### Key Benefits:
 - **Zero New Dependencies:** Uses Microsoft Edge built into Windows 10 & 11 (0 MB extra download).
 - **Native Look & Feel:** Chromeless standalone desktop window — **no browser tabs, no URL bar, no bookmarks, no navigation buttons**.
-- **Isolated App Profile:** Dedicated profile in `%LOCALAPPDATA%\BanglaScantlingApp\EdgeProfile` ensures your app settings, zoom, and window sizing stay preserved without affecting personal browser sessions.
+- **Isolated App Profile:** Dedicated profile in `%LOCALAPPDATA%\ShipLabBDApp\EdgeProfile` ensures your app settings, zoom, and window sizing stay preserved without affecting personal browser sessions.
 - **Automated Lifecycle:** Automatically starts the local backend server, conducts health checks, and shuts down cleanly when the window is closed.
 
 ---
 
 ## 🖥️ How to Launch
 
-You have four convenient ways to launch the software:
+You have several convenient ways to launch **ShipLab-BD**:
 
 1. **Desktop Shortcut:**
-   - Double-click the **"Bangladesh Scantlings Suite"** shortcut on your Windows Desktop (with custom app icon).
+   - Double-click the **"ShipLab-BD"** shortcut on your Windows Desktop (with custom high-res app icon).
 2. **Windowless Launcher (Silent):**
-   - Double-click `BanglaScantling.vbs` (launches directly with **no black command prompt** window).
+   - Double-click `ShipLab-BD.vbs` or `BanglaScantling.vbs` (launches directly with **no black command prompt** window).
 3. **Batch Launcher:**
-   - Double-click `BanglaScantling.bat` or `start_app.bat`.
+   - Double-click `ShipLab-BD.bat` or `BanglaScantling.bat`.
 4. **Command Line:**
    ```bash
    python run_app.py

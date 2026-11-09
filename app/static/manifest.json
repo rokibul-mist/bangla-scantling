@@ -1,6 +1,6 @@
 {
-  "name": "Bangladesh Inland Vessel Scantlings Suite",
-  "short_name": "BanglaScantling",
+  "name": "ShipLab-BD",
+  "short_name": "ShipLab-BD",
   "description": "Statutory structural scantlings and lightship estimation per Bangladesh Inland Shipping Rules 2001 & SRO 308",
   "start_url": "/",
   "display": "standalone",

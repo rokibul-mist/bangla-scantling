@@ -27,7 +27,7 @@ import urllib.error
 
 APP_PORT = 8055
 APP_URL = f"http://127.0.0.1:{APP_PORT}"
-APP_TITLE = "Bangladesh Inland Vessel Scantlings Suite"
+APP_TITLE = "ShipLab-BD - Naval Architecture Suite"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def is_server_running(url: str, timeout: float = 0.8) -> bool:

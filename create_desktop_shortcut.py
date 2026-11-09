@@ -14,7 +14,7 @@ def create_shortcut():
 
     base_dir = os.path.dirname(os.path.abspath(__file__))
     desktop_dir = os.path.join(os.environ["USERPROFILE"], "Desktop")
-    shortcut_path = os.path.join(desktop_dir, "Bangladesh Scantlings Suite.lnk")
+    shortcut_path = os.path.join(desktop_dir, "ShipLab-BD.lnk")
     icon_path = os.path.join(base_dir, "app_icon.ico")
     target_vbs = os.path.join(base_dir, "BanglaScantling.vbs")
 
@@ -24,7 +24,7 @@ $WshShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WshShell.CreateShortcut('{shortcut_path}')
 $Shortcut.TargetPath = '{target_vbs}'
 $Shortcut.WorkingDirectory = '{base_dir}'
-$Shortcut.Description = 'Bangladesh Inland Vessel Statutory Compliance & Scantlings Suite'
+$Shortcut.Description = 'ShipLab-BD - Naval Architecture Suite'
 if (Test-Path '{icon_path}') {{
     $Shortcut.IconLocation = '{icon_path}, 0'
 }}
