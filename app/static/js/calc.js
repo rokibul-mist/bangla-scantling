@@ -207,7 +207,13 @@ function recalculateAll(state) {
         effFactor = m.derivation.inputs_used.factor;
       }
       m.factor = effFactor;
-      const baseToUse = (m.derivation && typeof m.derivation.baseline === 'number') ? m.derivation.baseline : raw_base;
+      let baseToUse = (m.derivation && typeof m.derivation.baseline === 'number') ? m.derivation.baseline : raw_base;
+      if (typeof StatutoryInterpolators !== 'undefined' && StatutoryInterpolators.interpolateMember) {
+        const dyn = StatutoryInterpolators.interpolateMember(m_id, inputs);
+        if (dyn && typeof dyn.baseline === 'number') {
+          baseToUse = dyn.baseline;
+        }
+      }
       const req_val = +(baseToUse * effFactor).toFixed(2);
       m.baseline = baseToUse;
       m.rreq = req_val;
@@ -247,7 +253,13 @@ function recalculateAll(state) {
       const prov_sm = s_res.z_cm3;
 
       m.factor = kz;
-      const baseSmToUse = (m.derivation && typeof m.derivation.baseline === 'number') ? m.derivation.baseline : raw_base;
+      let baseSmToUse = (m.derivation && typeof m.derivation.baseline === 'number') ? m.derivation.baseline : raw_base;
+      if (typeof StatutoryInterpolators !== 'undefined' && StatutoryInterpolators.interpolateMember) {
+        const dyn = StatutoryInterpolators.interpolateMember(m_id, inputs);
+        if (dyn && typeof dyn.baseline === 'number') {
+          baseSmToUse = dyn.baseline;
+        }
+      }
       const req_sm = +(baseSmToUse * kz).toFixed(2);
       m.baseline = baseSmToUse;
       m.rreq = req_sm;
