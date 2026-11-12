@@ -62,157 +62,144 @@
 
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col md:flex-row antialiased">
 
-  <!-- ShipLab-BD Modern AI Loading Splash Screen -->
-<!-- ShipLab-BD Modern Cinematic Loading Screen -->
-<div id="app-loading-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-between p-6 sm:p-10 text-white select-none transition-all duration-700 ease-out">
-  <!-- Dynamic Cinematic Background with AI-generated Naval Lab Backdrop and Ambient Blur Overlay -->
-  <div class="absolute inset-0 bg-slate-950 overflow-hidden pointer-events-none -z-10">
-    <div id="splash-bg-image" class="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-1000 ease-out opacity-45" style="background-image: url('/static/splash_bg.jpg');"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/90 backdrop-blur-xs"></div>
-    <!-- Precision CAD grid background pattern -->
-    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]"></div>
-  </div>
+  <!-- ShipLab-BD Professional Engineering Software Splash Screen (Light Theme) -->
+<div id="app-loading-screen" class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-200/90 backdrop-blur-xs select-none transition-all duration-500 ease-out">
+  <!-- Professional Software Splash Dialog Card -->
+  <div class="relative w-full max-w-lg bg-white rounded-lg border border-slate-300 shadow-2xl overflow-hidden flex flex-col">
+    <!-- Header Accent Bar -->
+    <div class="h-1.5 bg-blue-600 w-full"></div>
 
-  <!-- Top System Badge -->
-  <div class="w-full flex items-center justify-between text-xs text-slate-400">
-    <div class="flex items-center gap-2">
-      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-      <span class="font-mono text-[11px] tracking-wider text-emerald-400 font-semibold uppercase">DOS SRO 308/Law-2001 &amp; ISO 1976</span>
-    </div>
-    <div class="font-mono text-[11px] tracking-wider text-slate-400">
-      v2.0.0 • 64-BIT STATUTORY ENGINE
-    </div>
-  </div>
-
-  <!-- Center Branding & Progress -->
-  <div class="flex flex-col items-center max-w-md w-full text-center my-auto">
-    <!-- Animated Glowing Logo Mark -->
-    <div class="relative mb-6">
-      <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 rounded-3xl blur-xl opacity-40 animate-pulse"></div>
-      <img src="/static/icon.png" alt="ShipLab-BD" class="relative w-24 h-24 rounded-2xl shadow-2xl border border-cyan-400/30 object-contain p-1 bg-slate-900/80 backdrop-blur-md" />
-    </div>
-
-    <!-- Software Title -->
-    <div class="flex items-center gap-2 mb-2">
-      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-white">
-        Ship<span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Lab</span>
-      </h1>
-      <span class="px-2.5 py-0.5 text-xs font-black bg-blue-600 text-white rounded-md tracking-wider shadow-sm">BD</span>
-    </div>
-    
-    <p class="text-xs sm:text-sm text-slate-300 font-medium tracking-wide mb-8">
-      Naval Architecture &amp; Structural Scantling Suite
-    </p>
-
-    <!-- Progress Container -->
-    <div class="w-full space-y-3">
-      <!-- Outer Track -->
-      <div class="w-full h-2 bg-slate-800/80 rounded-full overflow-hidden p-0.5 border border-slate-700/60 backdrop-blur-sm shadow-inner">
-        <!-- Animated Bar -->
-        <div id="splash-progress-bar" class="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 rounded-full transition-all duration-300 ease-out shadow-[0_0_12px_rgba(56,189,248,0.6)]" style="width: 15%;"></div>
+    <!-- Main Splash Body -->
+    <div class="p-8 sm:p-10 flex flex-col items-center text-center">
+      <!-- White-Background Logo Mark -->
+      <div class="mb-5 p-2 bg-white rounded-xl border border-slate-200 shadow-xs">
+        <img src="/static/icon.png" alt="ShipLab-BD Logo" class="w-20 h-20 object-contain" />
       </div>
 
-      <!-- Live Loading Step Text -->
-      <div class="flex items-center justify-between text-[11.5px] font-mono text-slate-400 px-1">
-        <span id="splash-status-text" class="text-cyan-300/90 truncate">Initializing Naval Calculation Engine...</span>
-        <span id="splash-percent-text" class="text-slate-400 font-semibold ml-2">15%</span>
+      <!-- Application Title & Subtitle -->
+      <div class="flex items-center gap-2 mb-1.5">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Ship<span class="text-blue-600">Lab</span>
+        </h1>
+        <span class="px-2 py-0.5 text-xs font-bold bg-slate-100 text-slate-700 border border-slate-300 rounded tracking-normal">
+          BD
+        </span>
+      </div>
+
+      <div class="text-[12px] font-semibold text-slate-600 tracking-wide uppercase mb-1">
+        Naval Architecture &amp; Statutory Scantlings Suite
+      </div>
+      <div class="text-[11px] text-slate-500 font-medium mb-6">
+        Department of Shipping (DOS) • SRO 308/Law-2001 &amp; ISO 1976
+      </div>
+
+      <!-- Standard Software Loading Progress Bar -->
+      <div class="w-full space-y-2 mb-2">
+        <!-- Progress Track -->
+        <div class="w-full h-2 bg-slate-100 rounded border border-slate-300 overflow-hidden">
+          <div id="splash-progress-bar" class="h-full bg-blue-600 rounded transition-all duration-200 ease-out" style="width: 20%;"></div>
+        </div>
+
+        <!-- Live Step Indicator -->
+        <div class="flex items-center justify-between text-[11px] font-mono text-slate-600 px-0.5">
+          <span id="splash-status-text" class="truncate text-left font-medium">Initializing Statutory Calculation Engine...</span>
+          <span id="splash-percent-text" class="font-bold text-slate-700 ml-2">20%</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bottom Authority Credit -->
-  <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 border-t border-slate-800/80 pt-4">
-    <div class="text-[11px] text-slate-400">
-      Department of Shipping (DOS) Inland Vessel Statutory Compliance System
-    </div>
-    <div class="text-[11px] text-slate-300 font-medium flex items-center gap-1.5">
-      <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-      <span>Prepared by <b class="text-white font-semibold">MD Rokibul Hasan</b>, Naval Architect, MIST</span>
+    <!-- Standard Software Bottom Status Strip -->
+    <div class="bg-slate-50 border-t border-slate-200 px-5 py-2.5 flex flex-wrap items-center justify-between gap-2 text-[10.5px] text-slate-500 font-sans">
+      <div class="flex items-center gap-1.5 truncate">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+        <span>Version 2.0.0 (64-Bit Enterprise)</span>
+      </div>
+      <div class="font-medium text-slate-600">
+        Prepared by <span class="font-bold text-slate-800">MD Rokibul Hasan</span>, Naval Architect, MIST
+      </div>
     </div>
   </div>
 </div>
 
 
-
-
-
-  <!-- Left Sidebar (Vertical Navigation) -->
-
-  <!-- Left Sidebar (Vertical Navigation) - Compact & Narrow -->
-<aside class="w-full md:w-48 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40">
+<!-- Left Sidebar (Vertical Navigation) - Standard Software Light Theme -->
+<aside class="w-full md:w-48 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40 select-none">
   <!-- Brand & System Logo -->
-  <div class="p-2.5 border-b border-slate-200 flex items-center gap-2 bg-white">
-    <img src="/static/icon.png" alt="ShipLab-BD Logo" class="w-8 h-8 rounded-lg shadow-xs shrink-0 object-contain" />
+  <div class="p-2 border-b border-slate-200 flex items-center gap-2 bg-slate-50/50">
+    <div class="w-8 h-8 rounded border border-slate-200 bg-white p-0.5 shadow-2xs shrink-0 flex items-center justify-center">
+      <img src="/static/icon.png" alt="ShipLab-BD Logo" class="w-full h-full object-contain" />
+    </div>
     <div class="overflow-hidden">
       <div class="text-[13px] font-extrabold text-slate-900 tracking-tight leading-tight flex items-center gap-1">
-        <span>ShipLab</span><span class="text-[10px] font-black bg-blue-600 text-white px-1 py-0.2 rounded tracking-normal">BD</span>
+        <span>ShipLab</span><span class="text-[9.5px] font-bold bg-slate-100 text-slate-700 border border-slate-300 px-1 py-0.2 rounded tracking-normal">BD</span>
       </div>
-      <div class="text-[9px] text-slate-500 font-semibold truncate">Naval Architecture Suite</div>
+      <div class="text-[9px] text-slate-500 font-medium truncate">Naval Architecture Suite</div>
     </div>
   </div>
 
   <!-- Navigation Items (Vertical Stack) -->
   <nav class="p-1.5 space-y-0.5 flex-1 overflow-y-auto">
-    <div class="px-2 py-1 text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Navigation</div>
-    <button class="nav-tab active w-full !text-[11.5px] !py-1.5 !px-2" data-tab="dashboard">
+    <div class="px-2 py-1 text-[9px] font-bold text-slate-400 uppercase tracking-wider">Navigation</div>
+    <button class="nav-tab active w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="dashboard">
       <span class="truncate">Dashboard</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="sheet2-calc">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="sheet2-calc">
       <span class="truncate">Detail Calculations</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="lightship">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="lightship">
       <span class="truncate">Lightship Calculation</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="strength">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="strength">
       <span class="truncate">Hull Strength</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2 flex items-center justify-between" data-tab="tonnage-calc">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left flex items-center justify-between" data-tab="tonnage-calc">
       <span class="truncate">Tonnage (ISO 2001)</span>
-      <span class="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-amber-100 text-amber-800">GT/NT</span>
+      <span class="text-[8.5px] px-1 py-0.2 rounded font-mono font-medium bg-slate-100 text-slate-600 border border-slate-200">GT/NT</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="application-form">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="application-form">
       <span class="truncate">Application Form</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="empirical-tables">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="empirical-tables">
       <span class="truncate">Empirical Tables</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="calc-brain">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="calc-brain">
       <span class="truncate">Calculation Brain</span>
     </button>
   </nav>
 
-  <!-- STATUTORY RULES & ACTS (13 BOOKS) CARD - UP-RIGHT & IN LEFT SIDEBAR -->
-  <div class="p-2 border-t border-slate-200 bg-gradient-to-b from-amber-50 to-amber-100/70">
+  <!-- STATUTORY RULES (13 BOOKS) - Clean Software Light Component -->
+  <div class="p-2 border-t border-slate-200 bg-white">
     <button 
       id="btn-sidebar-statutory-drawer"
       onclick="window.statutoryDrawer && window.statutoryDrawer.open()"
-      class="w-full p-2 bg-amber-600 hover:bg-amber-700 text-white rounded-md shadow-xs transition-all hover:shadow-sm cursor-pointer flex flex-col gap-1 text-left group"
-      title="Open Bangladesh Inland Statutory Rules, Laws &amp; ISO 1976 Reference Library (Alt+R)"
+      class="w-full p-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-800 border border-slate-200 hover:border-slate-300 rounded text-left transition cursor-pointer flex flex-col gap-1"
+      title="Open Bangladesh Inland Statutory Rules &amp; ISO 1976 Reference Library (Alt+R)"
     >
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-amber-200 group-hover:scale-110 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          <span class="text-[11px] font-bold tracking-tight text-white uppercase">Statutory Rules</span>
+          <svg class="w-3.5 h-3.5 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span class="text-[10.5px] font-bold text-slate-700 uppercase tracking-tight">Statutory Rules</span>
         </div>
-        <span class="text-[9px] bg-amber-800/80 text-amber-100 font-mono font-bold px-1.5 py-0.2 rounded">13 Books</span>
+        <span class="text-[8.5px] font-mono text-slate-500 bg-white border border-slate-200 px-1 py-0.2 rounded font-semibold">13 Books</span>
       </div>
-      <div class="text-[9.5px] text-amber-100/95 leading-tight font-medium">
-        Rules 1–227, Tables &amp; ISO 1976
+      <div class="text-[9px] text-slate-500 truncate">
+        Rules 1–227 &amp; ISO 1976 Library
       </div>
-      <div class="text-[8.5px] text-amber-200/90 flex items-center justify-between pt-1 mt-0.5 border-t border-amber-500/40">
-        <span>Click to Search &amp; View</span>
-        <kbd class="font-mono bg-amber-700/80 px-1 rounded text-[8px] text-white">Alt+R</kbd>
+      <div class="text-[8px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-100">
+        <span>Search Rules</span>
+        <kbd class="font-mono bg-white border border-slate-200 px-1 rounded text-[7.5px] text-slate-500">Alt+R</kbd>
       </div>
     </button>
   </div>
 
   <!-- Sidebar Bottom Status / Engineering Credit (Bottom-Left Corner) -->
-  <div class="p-2.5 border-t border-slate-200 bg-slate-50/90 text-[10px] text-slate-500 hidden md:block">
-    <div class="text-[8.5px] uppercase font-bold text-slate-400 tracking-wider">Engineering Credit</div>
+  <div class="p-2 border-t border-slate-200 bg-slate-50/70 text-[9.5px] text-slate-500 hidden md:block">
+    <div class="text-[8px] uppercase font-bold text-slate-400 tracking-wider">Engineering Credit</div>
     <div class="font-bold text-slate-800 tracking-tight truncate mt-0.5">Prepared by MD Rokibul Hasan</div>
-    <div class="text-[9.5px] text-blue-700 font-semibold truncate">Naval Architect, MIST</div>
+    <div class="text-[9px] text-slate-600 font-medium truncate">Naval Architect, MIST</div>
   </div>
 </aside>
+
 
 
 
@@ -227,9 +214,13 @@
   <div class="px-5 py-2.5 flex flex-wrap items-center justify-between gap-3">
     <!-- Vessel Identity & Native App Badge -->
     <div class="flex items-center gap-2.5">
-      <img src="/static/icon.png" alt="App Icon" class="w-6 h-6 rounded shadow-2xs" />
-      <span class="text-sm font-bold text-slate-800 tracking-tight" id="top-vessel-name">M.V. CROWN MARINERS - 67</span>
-      <span class="px-2 py-0.5 text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 rounded-full tracking-wide">ShipLab-BD</span>
+      <div class="w-6 h-6 rounded border border-slate-200 bg-white p-0.5 flex items-center justify-center">
+        <img src="/static/icon.png" alt="ShipLab-BD" class="w-full h-full object-contain" />
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-bold text-slate-900 tracking-tight" id="top-vessel-name">M.V. CROWN MARINERS - 67</span>
+        <span class="px-2 py-0.5 text-[9.5px] font-semibold bg-slate-100 text-slate-700 border border-slate-300 rounded tracking-normal">ShipLab-BD</span>
+      </div>
     </div>
     <div class="flex items-center gap-3">
       <div class="text-[11px] text-slate-500 font-medium hidden sm:block">Inland Shipping Ordinance 1976 &amp; SRO 308/Law-2001 (Rules 8 - 147)</div>
@@ -243,6 +234,7 @@
     </div>
   </div>
 </header>
+
 
 
 
@@ -286,35 +278,32 @@
 
     <!-- Compact Footer -->
 
-    <!-- Compact Footer -->
-<footer class="bg-white border-t border-slate-200 py-2.5 text-xs text-slate-500 no-print">
-  <div class="px-4 flex flex-wrap justify-between items-center gap-2">
-    <div class="flex items-center gap-2">
-      <span class="font-bold text-slate-700">ShipLab-BD</span>
-      <span class="text-slate-300">•</span>
-      <span>Department of Shipping (DOS) Inland Vessel Statutory Compliance System • SRO 308/Law-2001</span>
-    </div>
-    <div class="text-[11px] text-slate-700 bg-slate-100/90 px-3 py-1 rounded-md border border-slate-200 flex items-center gap-1.5 shadow-2xs">
-      <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-      <span>Prepared by <b class="text-slate-900 font-bold">MD Rokibul Hasan</b>, Naval Architect, MIST</span>
-    </div>
+    <!-- Standard Software Status Strip (Light Theme) -->
+<footer class="bg-slate-50 border-t border-slate-200 py-1.5 px-4 text-[11px] text-slate-600 no-print flex flex-wrap justify-between items-center gap-2">
+  <div class="flex items-center gap-2">
+    <span class="font-bold text-slate-800">ShipLab-BD</span>
+    <span class="text-slate-300">•</span>
+    <span>Department of Shipping (DOS) Inland Vessel Statutory Compliance System • SRO 308/Law-2001</span>
+  </div>
+  <div class="text-[11px] text-slate-600 bg-white px-2.5 py-0.5 rounded border border-slate-200 flex items-center gap-1.5">
+    <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+    <span>Prepared by <b class="text-slate-800 font-semibold">MD Rokibul Hasan</b>, Naval Architect, MIST</span>
   </div>
 </footer>
 
+
   </div>
 
 
 
-  <!-- Right Sidebar (Export Reports & Quick Actions) -->
-
-  <!-- Right Sidebar (Controls & Actions) - Ultra-Compact & Clean -->
+  <!-- Right Sidebar (Controls & Actions) - Standard Software Light Theme -->
 <aside class="w-full md:w-44 bg-white border-t md:border-t-0 md:border-l border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40 select-none">
   <!-- Top Bar -->
-  <div class="px-2.5 py-1.5 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
-    <div class="text-[10px] font-bold text-slate-800 tracking-tight uppercase">Controls &amp; State</div>
+  <div class="px-2.5 py-2 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0">
+    <div class="text-[10px] font-bold text-slate-700 tracking-tight uppercase">Actions &amp; State</div>
     <div id="save-status-container" class="flex items-center gap-1" title="Project Autosave Status">
-      <span id="save-status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-      <span id="save-status-text" class="text-[8.5px] text-slate-400 font-medium">Saved</span>
+      <span id="save-status-dot" class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+      <span id="save-status-text" class="text-[8.5px] text-slate-500 font-medium">Saved</span>
     </div>
   </div>
 
@@ -322,81 +311,82 @@
   <div class="p-1.5 space-y-1.5 flex-1 overflow-y-auto no-scrollbar">
     
     <!-- 1. PROJECT STATE & AUTOSAVE -->
-    <div class="bg-slate-50/80 p-1.5 rounded border border-slate-200 space-y-1">
+    <div class="bg-white p-1.5 rounded border border-slate-200 space-y-1 shadow-2xs">
       <div class="flex items-center justify-between">
         <button 
           id="btn-save-project" 
           onclick="saveProjectState(true)" 
-          class="flex-1 mr-1.5 py-1 px-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-[10px] font-bold shadow-2xs transition text-center cursor-pointer truncate"
+          class="flex-1 mr-1.5 py-1.5 px-2 bg-slate-800 hover:bg-slate-900 active:bg-slate-950 text-white rounded text-[10px] font-semibold transition text-center cursor-pointer truncate"
         >
           <span id="save-btn-text">Save Calculation</span>
         </button>
 
         <!-- Autosave Toggle -->
         <label class="flex items-center gap-1 cursor-pointer select-none shrink-0" title="Toggle automatic background saving">
-          <span class="text-[8.5px] font-semibold text-slate-500">Auto</span>
+          <span class="text-[8.5px] font-medium text-slate-500">Auto</span>
           <div class="relative inline-block w-5 h-3">
             <input type="checkbox" id="toggle-autosave" class="sr-only peer" checked onchange="handleAutosaveToggle(this.checked)">
-            <div class="w-5 h-3 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-2 peer-checked:after:border-white after:content-[''] after:absolute after:top-[1px] after:left-[1px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all peer-checked:bg-emerald-600"></div>
+            <div class="w-5 h-3 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-2 peer-checked:after:border-white after:content-[''] after:absolute after:top-[1px] after:left-[1px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-2.5 after:w-2.5 after:transition-all peer-checked:bg-blue-600"></div>
           </div>
         </label>
       </div>
     </div>
 
     <!-- 2. OFFICIAL PDF DELIVERABLES (CONSOLIDATED 4 BOOKLETS) -->
-    <div class="bg-slate-50/80 p-1.5 rounded border border-slate-200 space-y-1">
-      <div class="text-[9px] font-bold text-slate-700 uppercase tracking-wider pb-0.5 border-b border-slate-200">
-        PDF Booklets
+    <div class="bg-white p-1.5 rounded border border-slate-200 space-y-1 shadow-2xs">
+      <div class="text-[9px] font-bold text-slate-600 uppercase tracking-wider pb-0.5 border-b border-slate-100 flex items-center justify-between">
+        <span>PDF Deliverables</span>
+        <span class="text-[8px] font-mono text-slate-400">DOS</span>
       </div>
 
       <!-- Detail Calc PDF -->
       <button 
         id="btn-view-detail-calc-pdf" 
         onclick="openDetailCalcPdfModal()" 
-        class="w-full py-1.5 px-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-[10px] font-bold shadow-2xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
-        title="View Technical PDF Booklet: Cover Page + Dashboard + All Calculation Sheets with Vector Figures"
+        class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 rounded text-[9.5px] font-medium transition flex items-center justify-between cursor-pointer"
+        title="View Technical PDF Booklet: Detail Calculation Sheets with Vector Figures"
       >
-        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        <span>Detail Calc PDF</span>
+        <span class="truncate">Detail Calc PDF</span>
+        <span class="text-[8px] font-mono px-1 py-0.2 bg-white border border-slate-200 text-slate-500 rounded">PDF</span>
       </button>
 
       <!-- Lightship PDF -->
       <button 
         id="btn-view-lightship-pdf" 
         onclick="openLightshipPdfModal()" 
-        class="w-full py-1.5 px-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-[10px] font-bold shadow-2xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
-        title="View Official Lightship PDF Booklet: Cover Page + Steel Plating + Stiffeners + 56% Outfitting"
+        class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 rounded text-[9.5px] font-medium transition flex items-center justify-between cursor-pointer"
+        title="View Official Lightship PDF Booklet: Cover Page + Steel Plating + Stiffeners + Outfitting"
       >
-        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        <span>Lightship PDF</span>
+        <span class="truncate">Lightship PDF</span>
+        <span class="text-[8px] font-mono px-1 py-0.2 bg-white border border-slate-200 text-slate-500 rounded">PDF</span>
       </button>
 
       <!-- Hull Strength PDF -->
       <button 
         id="btn-view-strength-pdf" 
         onclick="openStrengthPdfModal()" 
-        class="w-full py-1.5 px-2 bg-indigo-700 hover:bg-indigo-800 text-white rounded text-[10px] font-bold shadow-2xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
+        class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 rounded text-[9.5px] font-medium transition flex items-center justify-between cursor-pointer"
         title="View Official 4-Page Hull Strength & Midship Modulus PDF Booklet with Tables 66/67"
       >
-        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        <span>Hull Strength PDF</span>
+        <span class="truncate">Hull Strength PDF</span>
+        <span class="text-[8px] font-mono px-1 py-0.2 bg-white border border-slate-200 text-slate-500 rounded">PDF</span>
       </button>
 
       <!-- Application Form PDF -->
       <button 
         id="btn-view-app-form-pdf" 
         onclick="openAppFormPdfModal()" 
-        class="w-full py-1.5 px-2 bg-amber-700 hover:bg-amber-800 text-white rounded text-[10px] font-bold shadow-2xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
+        class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 rounded text-[9.5px] font-medium transition flex items-center justify-between cursor-pointer"
         title="View Official 25-Page DOS Application Form PDF with Corner Seals"
       >
-        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        <span>Application Form PDF</span>
+        <span class="truncate">Application Form</span>
+        <span class="text-[8px] font-mono px-1 py-0.2 bg-white border border-slate-200 text-slate-500 rounded">PDF</span>
       </button>
     </div>
 
     <!-- 3. COMPLIANCE & ENGINEERING UTILITIES -->
-    <div class="bg-slate-50/80 p-1.5 rounded border border-slate-200 space-y-1">
-      <div class="text-[9px] font-bold text-slate-700 uppercase tracking-wider pb-0.5 border-b border-slate-200">
+    <div class="bg-white p-1.5 rounded border border-slate-200 space-y-1 shadow-2xs">
+      <div class="text-[9px] font-bold text-slate-600 uppercase tracking-wider pb-0.5 border-b border-slate-100">
         Utilities
       </div>
 
@@ -404,7 +394,7 @@
       <button 
         id="btn-verify-deliverables" 
         onclick="typeof openVerificationModal === 'function' ? openVerificationModal() : runFullVerificationSuite()" 
-        class="w-full py-1.5 px-2 bg-purple-700 hover:bg-purple-800 text-white rounded text-[10px] font-bold shadow-2xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
+        class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-800 border border-slate-200 hover:border-slate-300 rounded text-[10px] font-semibold transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
         title="Run 100-Point Statutory &amp; Scantling Cross-Verification Audit"
       >
         <span>Verify Deliverables</span>
@@ -415,7 +405,7 @@
       <button 
         id="btn-auto-comply" 
         onclick="window.autoComplyModal && window.autoComplyModal.open ? window.autoComplyModal.open() : (window.calcBrainEngine && window.calcBrainEngine.autoComplyAllScantlings ? window.calcBrainEngine.autoComplyAllScantlings() : (typeof autoComplyAllScantlings === 'function' ? autoComplyAllScantlings() : alert('Auto-comply function is initializing...')))" 
-        class="w-full py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[10px] font-bold shadow-2xs transition text-center cursor-pointer truncate"
+        class="w-full py-1.5 px-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-800 border border-slate-200 hover:border-slate-300 rounded text-[10px] font-semibold transition text-center cursor-pointer truncate"
         title="Auto-adjust actual scantlings to meet or exceed rule required minimums"
       >
         <span>Auto-Comply Scantlings</span>
@@ -425,14 +415,14 @@
       <div class="grid grid-cols-2 gap-1 pt-0.5">
         <button 
           id="btn-save-dos" 
-          class="py-1 px-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-[9.5px] font-semibold transition text-center cursor-pointer truncate shadow-2xs" 
+          class="py-1 px-1 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 rounded text-[9px] font-medium transition text-center cursor-pointer truncate" 
           title="Save complete project state in .dos format"
         >
           <span>Save (.dos)</span>
         </button>
         <button 
           id="btn-open-dos" 
-          class="py-1 px-1 border border-slate-300 hover:bg-slate-100 text-slate-700 rounded text-[9.5px] font-semibold transition text-center cursor-pointer truncate" 
+          class="py-1 px-1 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 rounded text-[9px] font-medium transition text-center cursor-pointer truncate" 
           title="Open or import a saved .dos project file"
         >
           <span>Open (.dos)</span>
@@ -443,50 +433,50 @@
       <!-- Reset Defaults -->
       <button 
         id="btn-reset-default" 
-        class="w-full py-0.5 border border-slate-200 hover:bg-slate-100 text-slate-500 rounded text-[8.5px] font-medium transition text-center cursor-pointer truncate" 
+        class="w-full py-0.5 text-slate-400 hover:text-slate-600 rounded text-[8.5px] font-medium transition text-center cursor-pointer truncate" 
         title="Reset to Excel Master Defaults"
       >
         Reset Defaults
       </button>
     </div>
 
-    <!-- 4. OFFICIAL ENGINEERING SEALS (COMPACT 2-COLUMN GRID) -->
-    <div class="bg-slate-50/80 p-1.5 rounded border border-slate-200 space-y-1">
-      <div class="text-[9px] font-bold text-slate-700 uppercase tracking-wider pb-0.5 border-b border-slate-200">
-        Official Engineering Seals
+    <!-- 4. OFFICIAL ENGINEERING SEALS -->
+    <div class="bg-white p-1.5 rounded border border-slate-200 space-y-1 shadow-2xs">
+      <div class="text-[9px] font-bold text-slate-600 uppercase tracking-wider pb-0.5 border-b border-slate-100">
+        Engineering Seals
       </div>
 
       <div class="grid grid-cols-2 gap-1.5">
         <!-- Designer Seal -->
-        <div class="bg-white p-1 rounded border border-slate-200 flex flex-col justify-between">
+        <div class="bg-slate-50/50 p-1 rounded border border-slate-200 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-0.5">
-            <span class="text-[9px] font-bold text-slate-800">Designer Seal</span>
+            <span class="text-[8.5px] font-bold text-slate-700">Designer</span>
             <button id="btn-clear-designer-seal" onclick="clearSeal('designer')" class="text-[7.5px] text-rose-600 hover:text-rose-800 hidden font-bold cursor-pointer">×</button>
           </div>
-          <div id="preview-designer-seal" class="h-8 bg-slate-50/50 border border-slate-100 rounded flex items-center justify-center p-0.5 mb-1 overflow-hidden">
+          <div id="preview-designer-seal" class="h-8 bg-white border border-slate-200 rounded flex items-center justify-center p-0.5 mb-1 overflow-hidden">
             <img id="img-designer-seal" src="/static/designer_seal_default.png" alt="Designer Seal" class="max-h-7 max-w-full object-contain"/>
           </div>
           <label for="upload-designer-seal" class="block cursor-pointer">
             <input type="file" id="upload-designer-seal" accept="image/png,image/jpeg,image/webp" class="sr-only" onclick="this.value=null;" onchange="handleSealUpload('designer', event)">
-            <span class="w-full py-0.5 px-1 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 rounded text-[8.5px] font-bold block text-center transition cursor-pointer truncate">
-              Upload Seal
+            <span class="w-full py-0.5 px-1 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 rounded text-[8.5px] font-medium block text-center transition cursor-pointer truncate">
+              Upload
             </span>
           </label>
         </div>
 
         <!-- Checker Seal -->
-        <div class="bg-white p-1 rounded border border-slate-200 flex flex-col justify-between">
+        <div class="bg-slate-50/50 p-1 rounded border border-slate-200 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-0.5">
-            <span class="text-[9px] font-bold text-slate-800">Checker Seal</span>
+            <span class="text-[8.5px] font-bold text-slate-700">Checker</span>
             <button id="btn-clear-checker-seal" onclick="clearSeal('checker')" class="text-[7.5px] text-rose-600 hover:text-rose-800 hidden font-bold cursor-pointer">×</button>
           </div>
-          <div id="preview-checker-seal" class="h-8 bg-slate-50/50 border border-slate-100 rounded flex items-center justify-center p-0.5 mb-1 overflow-hidden">
+          <div id="preview-checker-seal" class="h-8 bg-white border border-slate-200 rounded flex items-center justify-center p-0.5 mb-1 overflow-hidden">
             <img id="img-checker-seal" src="/static/checker_seal_default.png" alt="Checker Seal" class="max-h-7 max-w-full object-contain"/>
           </div>
           <label for="upload-checker-seal" class="block cursor-pointer">
             <input type="file" id="upload-checker-seal" accept="image/png,image/jpeg,image/webp" class="sr-only" onclick="this.value=null;" onchange="handleSealUpload('checker', event)">
-            <span class="w-full py-0.5 px-1 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 rounded text-[8.5px] font-bold block text-center transition cursor-pointer truncate">
-              Upload Seal
+            <span class="w-full py-0.5 px-1 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 rounded text-[8.5px] font-medium block text-center transition cursor-pointer truncate">
+              Upload
             </span>
           </label>
         </div>
@@ -494,34 +484,33 @@
     </div>
 
     <!-- 5. VESSEL DATABASE (ARCHIVED SHIP CALCULATIONS) -->
-    <div class="bg-slate-50/80 p-1.5 rounded border border-slate-200 space-y-1">
-      <div class="text-[9px] font-bold text-slate-700 uppercase tracking-wider pb-0.5 border-b border-slate-200 flex items-center justify-between">
-        <span>Vessel Database</span>
-        <span id="nav-vessel-count" class="text-[8.5px] px-1.5 py-0.2 rounded font-mono font-bold bg-blue-100 text-blue-800">DB</span>
+    <div class="bg-white p-1.5 rounded border border-slate-200 space-y-1 shadow-2xs">
+      <div class="text-[9px] font-bold text-slate-600 uppercase tracking-wider pb-0.5 border-b border-slate-100 flex items-center justify-between">
+        <span>Vessel Archive</span>
+        <span id="nav-vessel-count" class="text-[8px] px-1 py-0.2 rounded font-mono font-medium bg-slate-100 text-slate-600 border border-slate-200">DB</span>
       </div>
 
       <button 
         id="btn-open-vessel-db"
         onclick="if (window.navigation) window.navigation.switchTab('vessel-db');" 
-        class="w-full py-1.5 px-2 bg-slate-800 hover:bg-slate-900 text-white rounded text-[10px] font-bold shadow-2xs transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
+        class="w-full py-1.5 px-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 rounded text-[9.5px] font-semibold transition flex items-center justify-center gap-1.5 cursor-pointer text-center"
         title="Open Vessel Database Archive"
       >
-        <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+        <svg class="w-3 h-3 shrink-0 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
         <span>Open Database</span>
       </button>
 
       <div class="grid grid-cols-2 gap-1 pt-0.5">
         <button 
           onclick="openSaveVesselModal()" 
-          class="py-1 px-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-[9px] font-semibold transition text-center cursor-pointer truncate shadow-2xs flex items-center justify-center gap-0.5" 
+          class="py-1 px-1 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded text-[8.5px] font-medium transition text-center cursor-pointer truncate flex items-center justify-center gap-0.5" 
           title="Save this vessel into permanent Database"
         >
-          <svg class="w-2.5 h-2.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
           <span>Save DB</span>
         </button>
         <button 
           onclick="if (window.navigation) window.navigation.switchTab('vessel-db');" 
-          class="py-1 px-1 border border-slate-300 hover:bg-slate-100 text-slate-700 rounded text-[9px] font-semibold transition text-center cursor-pointer truncate flex items-center justify-center gap-0.5" 
+          class="py-1 px-1 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded text-[8.5px] font-medium transition text-center cursor-pointer truncate flex items-center justify-center gap-0.5" 
           title="Browse stored vessels from database"
         >
           <span>Browse</span>
@@ -532,11 +521,12 @@
   </div>
 
   <!-- Bottom Engine Indicator -->
-  <div class="px-2 py-1 border-t border-slate-200 bg-slate-50/60 text-[8.5px] text-slate-400 flex items-center justify-between shrink-0 hidden md:flex">
-    <span class="text-blue-700 font-bold truncate">PDF Vector Engine</span>
-    <span class="font-mono text-slate-400">Active</span>
+  <div class="px-2.5 py-1.5 border-t border-slate-200 bg-slate-50 text-[8.5px] text-slate-500 flex items-center justify-between shrink-0 hidden md:flex">
+    <span class="font-medium truncate">PDF Vector Engine</span>
+    <span class="font-mono text-emerald-600 font-semibold">Active</span>
   </div>
 </aside>
+
 
 
 

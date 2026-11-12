@@ -1,65 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090E1A" />
-      <stop offset="50%" stop-color="#0F172A" />
-      <stop offset="100%" stop-color="#1E293B" />
-    </linearGradient>
-
-    <!-- Hull Left Plate Gradient -->
-    <linearGradient id="hullLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E40AF" />
+    <!-- Hull Starboard / Left Gradient (Navy) -->
+    <linearGradient id="hullStarboard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A" />
       <stop offset="100%" stop-color="#0F172A" />
     </linearGradient>
 
-    <!-- Hull Right / Port Plate Gradient -->
-    <linearGradient id="hullRight" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" />
-      <stop offset="60%" stop-color="#0284C7" />
-      <stop offset="100%" stop-color="#0369A1" />
+    <!-- Hull Port / Right Gradient (Maritime Blue) -->
+    <linearGradient id="hullPort" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="60%" stop-color="#1D4ED8" />
+      <stop offset="100%" stop-color="#1E40AF" />
     </linearGradient>
 
-    <!-- Hull Deck Gradient -->
-    <linearGradient id="deckGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E2E8F0" />
-      <stop offset="100%" stop-color="#94A3B8" />
+    <!-- Upper Forecastle Deck -->
+    <linearGradient id="deckLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#CBD5E1" />
     </linearGradient>
 
-    <!-- Lab Glow / Laser Waterline -->
-    <linearGradient id="laserGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0" />
-      <stop offset="30%" stop-color="#06B6D4" stop-opacity="0.9" />
-      <stop offset="50%" stop-color="#10B981" stop-opacity="1" />
-      <stop offset="70%" stop-color="#06B6D4" stop-opacity="0.9" />
-      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0" />
+    <!-- Waterline Streamlines -->
+    <linearGradient id="waterLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.1" />
+      <stop offset="50%" stop-color="#0284C7" stop-opacity="1" />
+      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.1" />
     </linearGradient>
-
-    <!-- Stem Keel Glow -->
-    <linearGradient id="stemGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" />
-      <stop offset="50%" stop-color="#22D3EE" />
-      <stop offset="100%" stop-color="#10B981" />
-    </linearGradient>
-
-    <!-- Inner Border Glow -->
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.6" />
-      <stop offset="50%" stop-color="#2563EB" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#0D9488" stop-opacity="0.5" />
-    </linearGradient>
-
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
   </defs>
 
-  <!-- Squircle Base with Chamfered Modern Tech Corners -->
-  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="4"/>
+  <!-- Pure Crisp White Background with Software-Grade Subtle Border -->
+  <rect x="8" y="8" width="496" height="496" rx="96" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="4"/>
 
-  <!-- Subtle Precision Naval Blueprint Station Lines (Background Grid) -->
-  <g opacity="0.12" stroke="#38BDF8" stroke-width="1.5">
+  <!-- Subtle Blueprint Calibration Grid (Light Grey / Precision Engineering) -->
+  <g stroke="#E2E8F0" stroke-width="1.5" opacity="0.8">
     <line x1="64" y1="128" x2="448" y2="128" />
     <line x1="64" y1="192" x2="448" y2="192" />
     <line x1="64" y1="256" x2="448" y2="256" />
@@ -73,42 +45,41 @@
     <circle cx="256" cy="256" r="140" fill="none" stroke-width="1.5" stroke-dasharray="6 6" />
   </g>
 
-  <!-- Dynamic Lab Waterline Waves cutting across bottom -->
-  <path d="M 60 355 C 130 375, 190 335, 256 355 C 322 375, 382 335, 452 355" fill="none" stroke="url(#laserGlow)" stroke-width="4" filter="url(#glow)"/>
-  <path d="M 60 375 C 140 395, 180 355, 256 375 C 332 395, 372 355, 452 375" fill="none" stroke="#0284C7" stroke-width="2" opacity="0.4"/>
+  <!-- Clean Streamline Waterline at Bottom -->
+  <path d="M 64 360 C 130 376, 190 344, 256 360 C 322 376, 382 344, 448 360" fill="none" stroke="url(#waterLine)" stroke-width="3.5" stroke-linecap="round"/>
 
-  <!-- Geometric Ship Hull / Scantling Section Profile -->
+  <!-- Geometric Ship Hull (Architectural Vector Scantling Form) -->
   <!-- Upper Forecastle Deck -->
-  <polygon points="256,92 384,188 256,220 128,188" fill="url(#deckGrad)" opacity="0.95" />
+  <polygon points="256,92 384,188 256,220 128,188" fill="url(#deckLight)" stroke="#94A3B8" stroke-width="2" />
 
-  <!-- Port Outer Shell (Right side in perspective) -->
-  <polygon points="256,220 384,188 340,364 256,416" fill="url(#hullRight)" />
+  <!-- Port Outer Shell (Right Facet) -->
+  <polygon points="256,220 384,188 340,364 256,416" fill="url(#hullPort)" stroke="#1D4ED8" stroke-width="1.5" />
 
-  <!-- Starboard Outer Shell (Left side in perspective) -->
-  <polygon points="256,220 128,188 172,364 256,416" fill="url(#hullLeft)" />
+  <!-- Starboard Outer Shell (Left Facet) -->
+  <polygon points="256,220 128,188 172,364 256,416" fill="url(#hullStarboard)" stroke="#1E3A8A" stroke-width="1.5" />
 
-  <!-- Midship Structural Frames (Transparent internal scantlings) -->
-  <g stroke="#67E8F9" stroke-width="2.5" opacity="0.75" fill="none">
+  <!-- Internal Structural Frame Stations & Web Girders -->
+  <g stroke="#93C5FD" stroke-width="2.5" fill="none" opacity="0.9">
     <!-- Frame Station 1 -->
     <polyline points="152,228 256,260 360,228" />
     <line x1="256" y1="260" x2="256" y2="330" />
-    <!-- Frame Station 2 (Web Frame) -->
-    <polyline points="180,285 256,315 332,285" stroke="#38BDF8" stroke-width="3" />
-    <line x1="256" y1="315" x2="256" y2="385" stroke="#38BDF8" stroke-width="3" />
-    <!-- Bottom Floors -->
-    <line x1="200" y1="360" x2="256" y2="380" stroke="#10B981" stroke-width="3" />
-    <line x1="312" y1="360" x2="256" y2="380" stroke="#10B981" stroke-width="3" />
+    <!-- Web Frame Station 2 -->
+    <polyline points="180,285 256,315 332,285" stroke="#60A5FA" stroke-width="3" />
+    <line x1="256" y1="315" x2="256" y2="385" stroke="#60A5FA" stroke-width="3" />
+    <!-- Bottom Floor Girder -->
+    <line x1="200" y1="360" x2="256" y2="380" stroke="#0284C7" stroke-width="3.5" />
+    <line x1="312" y1="360" x2="256" y2="380" stroke="#0284C7" stroke-width="3.5" />
   </g>
 
-  <!-- Glowing Centerline Keel / Stem Profile (Statutory Centerline) -->
-  <line x1="256" y1="92" x2="256" y2="424" stroke="url(#stemGlow)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Precision Centerline Keel / Stem Line -->
+  <line x1="256" y1="92" x2="256" y2="422" stroke="#0284C7" stroke-width="5" stroke-linecap="round"/>
 
-  <!-- Bulbous Bow / Lab Node (Apex of Naval Architecture) -->
-  <circle cx="256" cy="420" r="14" fill="#0F172A" stroke="#10B981" stroke-width="4" filter="url(#glow)" />
-  <circle cx="256" cy="420" r="6" fill="#38BDF8" />
+  <!-- Bulbous Apex Node -->
+  <circle cx="256" cy="420" r="12" fill="#FFFFFF" stroke="#0284C7" stroke-width="4" />
+  <circle cx="256" cy="420" r="5" fill="#1E3A8A" />
 
-  <!-- Engineering Crosshair Compass Pointers -->
-  <g fill="#38BDF8" opacity="0.8">
+  <!-- Subtle Precision Pointers -->
+  <g fill="#94A3B8">
     <polygon points="256,48 261,64 251,64" />
     <polygon points="464,256 448,251 448,261" />
     <polygon points="48,256 64,251 64,261" />

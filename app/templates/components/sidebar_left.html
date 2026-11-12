@@ -1,75 +1,77 @@
-<!-- Left Sidebar (Vertical Navigation) - Compact & Narrow -->
-<aside class="w-full md:w-48 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40">
+<!-- Left Sidebar (Vertical Navigation) - Standard Software Light Theme -->
+<aside class="w-full md:w-48 bg-white border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0 md:sticky md:top-0 md:h-screen no-print z-40 select-none">
   <!-- Brand & System Logo -->
-  <div class="p-2 border-b border-slate-200 flex items-center gap-2 bg-white">
-    <img src="/static/icon.png" alt="ShipLab-BD Logo" class="w-8 h-8 rounded-lg shadow-xs shrink-0 object-contain" />
+  <div class="p-2 border-b border-slate-200 flex items-center gap-2 bg-slate-50/50">
+    <div class="w-8 h-8 rounded border border-slate-200 bg-white p-0.5 shadow-2xs shrink-0 flex items-center justify-center">
+      <img src="/static/icon.png" alt="ShipLab-BD Logo" class="w-full h-full object-contain" />
+    </div>
     <div class="overflow-hidden">
       <div class="text-[13px] font-extrabold text-slate-900 tracking-tight leading-tight flex items-center gap-1">
-        <span>ShipLab</span><span class="text-[10px] font-black bg-blue-600 text-white px-1 py-0.2 rounded tracking-normal">BD</span>
+        <span>ShipLab</span><span class="text-[9.5px] font-bold bg-slate-100 text-slate-700 border border-slate-300 px-1 py-0.2 rounded tracking-normal">BD</span>
       </div>
-      <div class="text-[9px] text-slate-500 font-semibold truncate">Naval Architecture Suite</div>
+      <div class="text-[9px] text-slate-500 font-medium truncate">Naval Architecture Suite</div>
     </div>
   </div>
 
   <!-- Navigation Items (Vertical Stack) -->
   <nav class="p-1.5 space-y-0.5 flex-1 overflow-y-auto">
-    <div class="px-2 py-1 text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Navigation</div>
-    <button class="nav-tab active w-full !text-[11.5px] !py-1.5 !px-2" data-tab="dashboard">
+    <div class="px-2 py-1 text-[9px] font-bold text-slate-400 uppercase tracking-wider">Navigation</div>
+    <button class="nav-tab active w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="dashboard">
       <span class="truncate">Dashboard</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="sheet2-calc">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="sheet2-calc">
       <span class="truncate">Detail Calculations</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="lightship">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="lightship">
       <span class="truncate">Lightship Calculation</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="strength">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="strength">
       <span class="truncate">Hull Strength</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2 flex items-center justify-between" data-tab="tonnage-calc">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left flex items-center justify-between" data-tab="tonnage-calc">
       <span class="truncate">Tonnage (ISO 2001)</span>
-      <span class="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-amber-100 text-amber-800">GT/NT</span>
+      <span class="text-[8.5px] px-1 py-0.2 rounded font-mono font-medium bg-slate-100 text-slate-600 border border-slate-200">GT/NT</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="application-form">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="application-form">
       <span class="truncate">Application Form</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="empirical-tables">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="empirical-tables">
       <span class="truncate">Empirical Tables</span>
     </button>
-    <button class="nav-tab w-full !text-[11.5px] !py-1.5 !px-2" data-tab="calc-brain">
+    <button class="nav-tab w-full !text-[11px] !py-1.5 !px-2 text-left" data-tab="calc-brain">
       <span class="truncate">Calculation Brain</span>
     </button>
   </nav>
 
-  <!-- STATUTORY RULES & ACTS (13 BOOKS) CARD - UP-RIGHT & IN LEFT SIDEBAR -->
-  <div class="p-2 border-t border-slate-200 bg-gradient-to-b from-amber-50 to-amber-100/70">
+  <!-- STATUTORY RULES (13 BOOKS) - Clean Software Light Component -->
+  <div class="p-2 border-t border-slate-200 bg-white">
     <button 
       id="btn-sidebar-statutory-drawer"
       onclick="window.statutoryDrawer && window.statutoryDrawer.open()"
-      class="w-full p-2 bg-amber-600 hover:bg-amber-700 text-white rounded-md shadow-xs transition-all hover:shadow-sm cursor-pointer flex flex-col gap-1 text-left group"
-      title="Open Bangladesh Inland Statutory Rules, Laws &amp; ISO 1976 Reference Library (Alt+R)"
+      class="w-full p-2 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-slate-800 border border-slate-200 hover:border-slate-300 rounded text-left transition cursor-pointer flex flex-col gap-1"
+      title="Open Bangladesh Inland Statutory Rules &amp; ISO 1976 Reference Library (Alt+R)"
     >
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-amber-200 group-hover:scale-110 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          <span class="text-[11px] font-bold tracking-tight text-white uppercase">Statutory Rules</span>
+          <svg class="w-3.5 h-3.5 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span class="text-[10.5px] font-bold text-slate-700 uppercase tracking-tight">Statutory Rules</span>
         </div>
-        <span class="text-[9px] bg-amber-800/80 text-amber-100 font-mono font-bold px-1.5 py-0.2 rounded">13 Books</span>
+        <span class="text-[8.5px] font-mono text-slate-500 bg-white border border-slate-200 px-1 py-0.2 rounded font-semibold">13 Books</span>
       </div>
-      <div class="text-[9.5px] text-amber-100/95 leading-tight font-medium">
-        Rules 1–227, Tables &amp; ISO 1976
+      <div class="text-[9px] text-slate-500 truncate">
+        Rules 1–227 &amp; ISO 1976 Library
       </div>
-      <div class="text-[8.5px] text-amber-200/90 flex items-center justify-between pt-1 mt-0.5 border-t border-amber-500/40">
-        <span>Click to Search &amp; View</span>
-        <kbd class="font-mono bg-amber-700/80 px-1 rounded text-[8px] text-white">Alt+R</kbd>
+      <div class="text-[8px] text-slate-400 flex items-center justify-between pt-1 border-t border-slate-100">
+        <span>Search Rules</span>
+        <kbd class="font-mono bg-white border border-slate-200 px-1 rounded text-[7.5px] text-slate-500">Alt+R</kbd>
       </div>
     </button>
   </div>
 
   <!-- Sidebar Bottom Status / Engineering Credit (Bottom-Left Corner) -->
-  <div class="p-2.5 border-t border-slate-200 bg-slate-50/90 text-[10px] text-slate-500 hidden md:block">
-    <div class="text-[8.5px] uppercase font-bold text-slate-400 tracking-wider">Engineering Credit</div>
+  <div class="p-2 border-t border-slate-200 bg-slate-50/70 text-[9.5px] text-slate-500 hidden md:block">
+    <div class="text-[8px] uppercase font-bold text-slate-400 tracking-wider">Engineering Credit</div>
     <div class="font-bold text-slate-800 tracking-tight truncate mt-0.5">Prepared by MD Rokibul Hasan</div>
-    <div class="text-[9.5px] text-blue-700 font-semibold truncate">Naval Architect, MIST</div>
+    <div class="text-[9px] text-slate-600 font-medium truncate">Naval Architect, MIST</div>
   </div>
 </aside>
