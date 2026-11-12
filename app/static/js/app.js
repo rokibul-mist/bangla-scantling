@@ -30,14 +30,60 @@ let autosaveDebounceTimer = null;
 
 
 
+// --- ShipLab-BD Modern Splash Screen Controller ---
+function updateSplashProgress(percent, text) {
+  const bar = document.getElementById('splash-progress-bar');
+  const txt = document.getElementById('splash-status-text');
+  const pct = document.getElementById('splash-percent-text');
+  if (bar) bar.style.width = `${percent}%`;
+  if (txt && text) txt.textContent = text;
+  if (pct) pct.textContent = `${percent}%`;
+}
+
+function hideSplashScreen() {
+  const splash = document.getElementById('app-loading-screen');
+  if (!splash) return;
+  updateSplashProgress(100, 'Statutory Calculation Engine Ready');
+  setTimeout(() => {
+    splash.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+    setTimeout(() => {
+      splash.style.display = 'none';
+    }, 700);
+  }, 350);
+}
+
+function showSplashScreen(message = 'Recalculating Deliverables...') {
+  const splash = document.getElementById('app-loading-screen');
+  if (!splash) return;
+  splash.style.display = 'flex';
+  splash.classList.remove('opacity-0', 'scale-105', 'pointer-events-none');
+  updateSplashProgress(45, message);
+}
+window.showSplashScreen = showSplashScreen;
+window.hideSplashScreen = hideSplashScreen;
+window.updateSplashProgress = updateSplashProgress;
+
 document.addEventListener('DOMContentLoaded', async () => {
+  const splashStart = Date.now();
+  updateSplashProgress(25, 'Initializing DOS SRO 308/2001 Statutory Engine...');
 
   await loadInitialState();
+  updateSplashProgress(60, 'Loading Schedule Tables 1–67 & Structural Interpolators...');
 
   setupEventListeners();
+  updateSplashProgress(85, 'Calibrating Midship Modulus & Lightship Synthesis...');
 
   renderApp();
+  updateSplashProgress(100, 'Ready — Welcome to ShipLab-BD');
 
+  const elapsed = Date.now() - splashStart;
+  const minWait = 1100;
+  const remaining = Math.max(0, minWait - elapsed);
+
+  setTimeout(() => {
+    if (window.__holdSplash) return;
+    hideSplashScreen();
+  }, remaining);
 });
 
 
