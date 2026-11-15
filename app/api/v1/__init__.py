@@ -10,6 +10,7 @@ from app.api.v1.endpoints_verification import router as verification_router
 from app.api.v1.endpoints_strength import router as strength_router
 from app.api.v1.endpoints_statutory import router as statutory_router
 from app.api.v1.endpoints_tonnage import router as tonnage_router
+from app.api.v1.endpoints_lines_plan import router as lines_plan_router
 
 api_router = APIRouter()
 api_router.include_router(state_router)
@@ -23,5 +24,6 @@ api_router.include_router(verification_router)
 api_router.include_router(strength_router)
 api_router.include_router(statutory_router)
 api_router.include_router(tonnage_router)
+api_router.include_router(lines_plan_router)
 
 __all__ = ["api_router"]

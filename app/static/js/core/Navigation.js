@@ -58,6 +58,8 @@ class Navigation {
       renderStrength();
     } else if (tabId === 'tonnage-calc' && typeof renderTonnage === 'function') {
       renderTonnage();
+    } else if (tabId === 'lines-plan' && typeof renderLinesPlan === 'function') {
+      renderLinesPlan();
     }
 
     // Trigger tab-specific render if registered

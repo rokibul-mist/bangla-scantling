@@ -525,6 +525,8 @@ function renderApp() {
     if (window.statutoryViews && typeof window.statutoryViews.renderEquipment === 'function') window.statutoryViews.renderEquipment();
   } else if (currentTab === 'tonnage-calc') {
     if (typeof renderTonnage === 'function') renderTonnage();
+  } else if (currentTab === 'lines-plan') {
+    if (typeof renderLinesPlan === 'function') renderLinesPlan();
   } else if (currentTab === 'passenger-tonnage') {
     if (window.statutoryViews && typeof window.statutoryViews.renderPassengerTonnage === 'function') window.statutoryViews.renderPassengerTonnage();
 
