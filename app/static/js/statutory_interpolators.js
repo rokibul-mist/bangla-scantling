@@ -5,9 +5,9 @@
  */
 
 function interp1D(x, xNodes, yNodes) {
+  // Statutory rule: when depth / any value is lower than available in empirical tables, consider lowest row
   if (x <= xNodes[0]) {
-    const lam = (x - xNodes[0]) / (xNodes[1] - xNodes[0]);
-    return yNodes[0] + lam * (yNodes[1] - yNodes[0]);
+    return yNodes[0];
   }
   const n = xNodes.length;
   if (x >= xNodes[n - 1]) {
@@ -158,10 +158,14 @@ const StatutoryInterpolators = {
       [38.0, 85.0, 150.0, 340.0, 600.0, 935.0, 1352.0]
     ];
     let dIdx = 5;
-    for (let i = 0; i < draftNodes.length - 1; i++) {
-      if (draft >= draftNodes[i] && draft <= draftNodes[i+1]) {
-        dIdx = (draft - draftNodes[i] < draftNodes[i+1] - draft) ? i : i + 1;
-        break;
+    if (draft <= draftNodes[0]) {
+      dIdx = 0;
+    } else {
+      for (let i = 0; i < draftNodes.length - 1; i++) {
+        if (draft >= draftNodes[i] && draft <= draftNodes[i+1]) {
+          dIdx = (draft - draftNodes[i] < draftNodes[i+1] - draft) ? i : i + 1;
+          break;
+        }
       }
     }
     const rowIdx = dIdx * 3 + (spacing <= 475 ? 0 : (spacing <= 525 ? 1 : 2));

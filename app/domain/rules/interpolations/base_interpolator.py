@@ -83,14 +83,9 @@ class BaseTableInterpolator:
         if n == 1:
             return float(y_nodes[0]), 0, 0, 0.0, False
 
-        # Below minimum node
+        # Below minimum node: Per statutory empirical rule, consider the lowest row of the table
         if x <= x_nodes[0]:
-            if not allow_extrapolation or x == x_nodes[0]:
-                return float(y_nodes[0]), 0, 1, 0.0, False
-            dx = x_nodes[1] - x_nodes[0]
-            slope = (y_nodes[1] - y_nodes[0]) / dx if dx != 0 else 0.0
-            val = y_nodes[0] + slope * (x - x_nodes[0])
-            return float(val), 0, 1, (x - x_nodes[0]) / dx, True
+            return float(y_nodes[0]), 0, 0, 0.0, False
 
         # Above maximum node
         if x >= x_nodes[-1]:
@@ -146,6 +141,7 @@ class BaseTableInterpolator:
     ) -> TableViewData:
         t_data = cls.get_table_data() or {}
         col_list = active_cols if active_cols is not None else ([active_col] if active_col is not None else [])
+        unique_active_rows = list(dict.fromkeys(active_rows))
         return TableViewData(
             table_id=str(t_data.get('id', cls.table_no_str)),
             table_no=cls.table_no_str,
@@ -153,7 +149,7 @@ class BaseTableInterpolator:
             ref=cls.ref_rule or t_data.get('ref', ''),
             headers=t_data.get('headers', []),
             rows=t_data.get('rows', []),
-            active_row_indices=active_rows,
+            active_row_indices=unique_active_rows,
             active_col_index=active_col,
             active_col_indices=col_list,
             bounding_cells=bounding_cells,
