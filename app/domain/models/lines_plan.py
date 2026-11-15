@@ -79,6 +79,33 @@ class HullHydrostatics(BaseModel):
     kmt_m: float = 0.0
 
 
+class MaxsurfSettings(BaseModel):
+    """Detected Bentley MAXSURF design model configuration and parameters."""
+    is_maxsurf: bool = True
+    model_name: str = ""
+    detected_via: str = "com_automation"  # "com_automation" or "native_parser"
+    fref_aft_perp: float = 0.0
+    fref_fwd_perp: float = 0.0
+    fref_midship: float = 0.0
+    fref_baseline: float = 0.0
+    fref_datum_wl: float = 0.0
+    grid_sections_count: int = 0
+    grid_waterlines_count: int = 0
+    grid_buttocks_count: int = 0
+    lbp: float = 0.0
+    beam: float = 0.0
+    depth: float = 0.0
+    draft: float = 0.0
+    cb: float = 0.0
+    cm: float = 0.0
+    cp: float = 0.0
+    cwp: float = 0.0
+    lcb: float = 0.0
+    lcf: float = 0.0
+    kmt: float = 0.0
+    surface_names: List[str] = Field(default_factory=list)
+
+
 class OffsetTableData(BaseModel):
     """Complete Table of Offsets with Reference Frame, Design Grid, and Hydrostatics."""
     vessel_name: str = "M. V. YOUNUS MOLLA-1"
@@ -93,3 +120,4 @@ class OffsetTableData(BaseModel):
     hydrostatics: Optional[HullHydrostatics] = None
     source_file: Optional[str] = None
     preset_type: str = "general_cargo"
+    maxsurf_settings: Optional[MaxsurfSettings] = None

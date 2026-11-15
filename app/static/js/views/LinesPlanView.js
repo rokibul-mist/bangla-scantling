@@ -153,6 +153,9 @@ function renderLinesPlan() {
         </div>
       </div>
 
+      <!-- 1.5 Bentley MAXSURF Detected Settings Banner -->
+      ${renderMaxsurfDetectedBanner(activeLinesData.maxsurf_settings)}
+
       <!-- 2. Integrated Hydrostatics KPI Bar -->
       ${renderHydrostaticsBar(activeLinesData.hydrostatics)}
 
@@ -190,6 +193,69 @@ function renderLinesPlan() {
   setTimeout(() => {
     drawActiveCanvases();
   }, 30);
+}
+
+function renderMaxsurfDetectedBanner(ms) {
+  if (!ms || !ms.is_maxsurf) return '';
+  return `
+    <div class="bg-blue-50/90 border border-blue-200 rounded p-2.5 shadow-2xs flex flex-wrap items-center justify-between gap-3 text-slate-800 animate-fadeIn">
+      <div class="flex items-start gap-2.5">
+        <div class="p-1.5 rounded bg-blue-600 text-white shrink-0 mt-0.5 shadow-xs">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[12px] font-bold text-blue-950">Bentley MAXSURF Model Settings Detected</span>
+            <span class="text-[8.5px] font-mono px-1.5 py-0.2 rounded bg-blue-100 text-blue-800 border border-blue-200 font-semibold uppercase">${ms.detected_via === 'com_automation' ? 'MAXSURF Modeler Engine' : 'Native Parser'}</span>
+            <span class="text-[9.5px] text-slate-500 font-medium">Model: <b class="text-slate-800">${ms.model_name || 'Design.msd'}</b></span>
+          </div>
+          <div class="text-[10px] text-slate-600 mt-1 flex flex-wrap items-center gap-x-3 gap-y-0.5">
+            <span><b>Frame of Reference:</b> AP: ${ms.fref_aft_perp}m | FP: ${ms.fref_fwd_perp}m | Mid: ${ms.fref_midship}m | Baseline: ${ms.fref_baseline}m | DWL: ${ms.fref_datum_wl}m</span>
+            <span>•</span>
+            <span><b>Design Grid:</b> ${ms.grid_sections_count} Stations | ${ms.grid_waterlines_count} Waterlines | ${ms.grid_buttocks_count} Buttocks</span>
+            <span>•</span>
+            <span><b>Particulars:</b> LBP: ${ms.lbp}m | Beam: ${ms.beam}m | Draft: ${ms.draft}m | Cb: ${ms.cb}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button 
+          onclick="syncMaxsurfToDashboard()" 
+          class="px-2.5 py-1.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded text-[10px] font-semibold transition flex items-center gap-1.5 cursor-pointer shadow-2xs"
+          title="Apply detected LBP, Beam, Depth, Draft, and Cb to the main Scantling Dashboard"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>Sync Dimensions to Dashboard</span>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function syncMaxsurfToDashboard() {
+  if (!activeLinesData || !activeLinesData.maxsurf_settings) {
+    alert("No active MAXSURF settings available to synchronize.");
+    return;
+  }
+  const ms = activeLinesData.maxsurf_settings;
+  if (!window.appStore) return;
+
+  const state = window.appStore.getState();
+  const inp = state.dashboard_inputs || {};
+  if (ms.lbp > 0) inp.lbp = ms.lbp;
+  if (ms.beam > 0) inp.breadth = ms.beam;
+  if (ms.depth > 0) inp.depth = ms.depth;
+  if (ms.draft > 0) inp.draft = ms.draft;
+  if (ms.cb > 0) inp.block_coeff = ms.cb;
+  if (ms.model_name) {
+    const cleanName = ms.model_name.replace(/\.[^/.]+$/, '').toUpperCase();
+    inp.vessel_name = cleanName;
+  }
+
+  window.appStore.setState({ dashboard_inputs: inp });
+  if (typeof updateLiveDashboardDisplays === 'function') updateLiveDashboardDisplays();
+  if (typeof Navigation !== 'undefined' && Navigation.syncTopHeader) Navigation.syncTopHeader(state);
+  alert(`Successfully synchronized MAXSURF settings to Dashboard:\n• Vessel: ${inp.vessel_name || 'MAXSURF Model'}\n• LBP: ${ms.lbp} m\n• Breadth: ${ms.beam} m\n• Depth: ${inp.depth || 5.18} m\n• Draft: ${ms.draft} m\n• Cb: ${ms.cb}`);
 }
 
 function renderHydrostaticsBar(h) {
@@ -664,15 +730,26 @@ function renderUploadHullModalHtml() {
           <button onclick="closeUploadHullModal()" class="text-slate-400 hover:text-slate-600 font-bold text-sm cursor-pointer">✕</button>
         </div>
 
-        <div class="space-y-2 text-[10.5px]">
-          <p class="text-slate-600">Upload existing offset table or 3D mesh. Supported formats: <b>.csv</b>, <b>.txt</b>, <b>.dat</b>, <b>.obj</b>, <b>.stl</b>, <b>.dxf</b>.</p>
+        <div class="space-y-2.5 text-[10.5px]">
+          <div class="p-2 bg-blue-50/80 border border-blue-200 rounded text-blue-900 flex items-start gap-2">
+            <span class="font-bold text-[9px] bg-blue-600 text-white px-1.5 py-0.5 rounded shrink-0 uppercase tracking-wider">MAXSURF</span>
+            <div class="text-[9.5px] leading-tight">
+              <b>Auto-Detection Enabled:</b> Upload a <b>.msd</b> or <b>.hmd</b> design. The software connects to Bentley MAXSURF and detects the exact Frame of Reference, Design Grids, and Hydrostatic parameters.
+            </div>
+          </div>
+          <p class="text-slate-600">Supported formats: <b>.msd</b>, <b>.hmd</b> (MAXSURF Models), <b>.csv</b>, <b>.txt</b>, <b>.dat</b> (Offset Tables), <b>.obj</b>, <b>.stl</b>, <b>.dxf</b> (3D Mesh/CAD).</p>
           <div class="border-2 border-dashed border-slate-200 hover:border-blue-400 rounded-lg p-5 text-center cursor-pointer bg-slate-50/50">
-            <input type="file" id="input-upload-hull-file" accept=".csv,.txt,.dat,.obj,.stl,.dxf" class="hidden" onchange="handleHullFileSelected(event)"/>
+            <input type="file" id="input-upload-hull-file" accept=".msd,.hmd,.csv,.txt,.dat,.obj,.stl,.dxf" class="hidden" onchange="handleHullFileSelected(event)"/>
             <label for="input-upload-hull-file" class="cursor-pointer block space-y-1">
-              <svg class="w-6 h-6 mx-auto text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              <div id="upload-hull-file-label" class="font-semibold text-slate-700">Choose file or drag &amp; drop here</div>
-              <div class="text-[9px] text-slate-400">Max size 25MB • Transverse sections or mesh vertices</div>
+              <svg class="w-6 h-6 mx-auto text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <div id="upload-hull-file-label" class="font-semibold text-slate-700">Choose MAXSURF (.msd) or geometry file</div>
+              <div class="text-[9px] text-slate-400">Max size 50MB • Automatically extracts all MAXSURF settings</div>
             </label>
+          </div>
+
+          <div id="upload-maxsurf-hint" class="hidden p-1.5 bg-emerald-50 border border-emerald-200 rounded text-emerald-800 text-[9.5px] flex items-center gap-1.5 font-medium">
+            <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Bentley MAXSURF design detected. Settings and grids will be extracted automatically.</span>
           </div>
 
           <div class="grid grid-cols-2 gap-2 pt-1">
@@ -897,7 +974,23 @@ function handleHullFileSelected(event) {
   if (!file) return;
   selectedHullFile = file;
   const label = document.getElementById('upload-hull-file-label');
-  if (label) label.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+  const isMs = file.name.toLowerCase().endsWith('.msd') || file.name.toLowerCase().endsWith('.hmd');
+  if (label) {
+    label.innerHTML = `
+      <span class="font-bold text-slate-900">${file.name}</span> 
+      <span class="text-slate-400 font-normal">(${(file.size / 1024).toFixed(1)} KB)</span>
+      ${isMs ? '<span class="ml-1.5 px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 text-[8.5px] font-bold uppercase">MAXSURF Model</span>' : ''}
+    `;
+  }
+  const hint = document.getElementById('upload-maxsurf-hint');
+  const btn = document.getElementById('btn-submit-upload-hull');
+  if (hint) {
+    if (isMs) hint.classList.remove('hidden');
+    else hint.classList.add('hidden');
+  }
+  if (btn) {
+    btn.textContent = isMs ? 'Detect MAXSURF Settings & Import' : 'Parse & Import';
+  }
 }
 
 async function submitUploadHull() {
@@ -906,9 +999,10 @@ async function submitUploadHull() {
     return;
   }
   const btn = document.getElementById('btn-submit-upload-hull');
+  const isMs = selectedHullFile.name.toLowerCase().endsWith('.msd') || selectedHullFile.name.toLowerCase().endsWith('.hmd');
   if (btn) {
     btn.disabled = true;
-    btn.textContent = 'Parsing...';
+    btn.textContent = isMs ? 'Connecting to MAXSURF & Detecting Settings...' : 'Parsing...';
   }
 
   const origin = document.getElementById('upload-origin-select')?.value || 'ap';
@@ -932,12 +1026,17 @@ async function submitUploadHull() {
     activeLinesData = data;
     closeUploadHullModal();
     renderLinesPlan();
+
+    if (data.maxsurf_settings) {
+      const ms = data.maxsurf_settings;
+      console.log('Detected MAXSURF settings:', ms);
+    }
   } catch (err) {
     alert(`File upload failed: ${err.message}`);
   } finally {
     if (btn) {
       btn.disabled = false;
-      btn.textContent = 'Parse & Import';
+      btn.textContent = isMs ? 'Detect MAXSURF Settings & Import' : 'Parse & Import';
     }
   }
 }
@@ -963,3 +1062,4 @@ window.saveDesignGridModal = saveDesignGridModal;
 window.handleHullFileSelected = handleHullFileSelected;
 window.submitUploadHull = submitUploadHull;
 window.resetCamera3D = resetCamera3D;
+window.syncMaxsurfToDashboard = syncMaxsurfToDashboard;

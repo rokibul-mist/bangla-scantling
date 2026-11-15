@@ -127,17 +127,17 @@ class LinesPlanService:
                 fx = 1.0
             elif x < mid_start:
                 # Aft run (stern)
-                xi = x / max(0.001, mid_start)
+                xi = max(0.0, min(1.0, x / max(0.001, mid_start)))
                 fx = 0.15 + 0.85 * (math.sin(xi * math.pi / 2.0) ** 1.35)
                 # Stern cut-up at AP
                 if x < lbp * 0.05:
-                    fx *= 0.5 + 0.5 * (x / (lbp * 0.05))
+                    fx *= 0.5 + 0.5 * max(0.0, min(1.0, x / (lbp * 0.05)))
             else:
                 # Forward entrance (bow)
-                xi = (lbp - x) / max(0.001, lbp - mid_end)
+                xi = max(0.0, min(1.0, (lbp - x) / max(0.001, lbp - mid_end)))
                 fx = 0.98 * (math.sin(xi * math.pi / 2.0) ** 1.15)
                 if x >= lbp * 0.98:
-                    fx = max(0.02, fx)
+                    fx = max(0.02, float(fx))
 
             st_max_beam = half_beam * fx
 
@@ -333,18 +333,24 @@ class LinesPlanService:
     def parse_uploaded_file(cls, filename: str, content_bytes: bytes, frame: Optional[ReferenceFrame] = None) -> OffsetTableData:
         """
         Parses an uploaded hull file:
+        - .msd, .hmd: Bentley MAXSURF design model (auto-detects Frame of Reference, Design Grids, and Hydrostatics)
         - .csv, .txt, .dat: Table of Offsets or XYZ points
         - .obj, .stl: 3D mesh slicing
         """
+        from app.services.maxsurf_service import MaxsurfService
+
         ext = filename.lower().split('.')[-1]
         frame = frame or ReferenceFrame()
 
-        if ext in ['csv', 'txt', 'dat', 'offsets']:
+        # Check for Bentley MAXSURF model or export
+        if ext in ['msd', 'hmd'] or MaxsurfService.is_maxsurf_file(filename, content_bytes):
+            return MaxsurfService.parse_maxsurf(filename, content_bytes)
+        elif ext in ['csv', 'txt', 'dat', 'offsets']:
             return cls._parse_csv_offsets(filename, content_bytes, frame)
         elif ext in ['obj', 'stl']:
             return cls._parse_3d_mesh(filename, content_bytes, frame)
         else:
-            raise ValueError(f"Unsupported hull file extension: .{ext}. Supported formats: .csv, .txt, .dat, .obj, .stl")
+            raise ValueError(f"Unsupported hull file extension: .{ext}. Supported formats: .msd, .hmd, .csv, .txt, .dat, .obj, .stl")
 
     @classmethod
     def _parse_csv_offsets(cls, filename: str, content_bytes: bytes, frame: ReferenceFrame) -> OffsetTableData:

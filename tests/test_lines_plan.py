@@ -106,6 +106,37 @@ St 10,0.0,0.3,0.5,0.7,0.8
         self.assertGreater(len(data.design_grid.waterlines), 2)
         self.assertGreater(data.hydrostatics.displacement_tonnes, 0.0)
 
+    def test_07_maxsurf_file_detection(self):
+        """Verify MAXSURF file format detection."""
+        from app.services.maxsurf_service import MaxsurfService
+        self.assertTrue(MaxsurfService.is_maxsurf_file("hull_design.msd", b"\x0b=A \x00\x00"))
+        self.assertTrue(MaxsurfService.is_maxsurf_file("vessel.hmd", b"Hydromax model"))
+        self.assertTrue(MaxsurfService.is_maxsurf_file("offsets.txt", b"MAXSURF Table of Offsets\nStation\tWL 0\tWL 1"))
+        self.assertFalse(MaxsurfService.is_maxsurf_file("notes.txt", b"General notes about the vessel"))
+
+    def test_08_maxsurf_msd_settings_detection(self):
+        """Verify detection of Frame of Reference and Design Grid from MAXSURF .msd."""
+        import os
+        from app.services.maxsurf_service import MaxsurfService
+        sample_msd = r"C:\Program Files\Bentley\Offshore\Maxsurf 2025\Automation Samples\Combined\HardChine.msd"
+        if os.path.exists(sample_msd):
+            with open(sample_msd, "rb") as f:
+                content = f.read()
+            data = LinesPlanService.parse_uploaded_file("HardChine.msd", content)
+            self.assertIsNotNone(data.maxsurf_settings)
+            self.assertTrue(data.maxsurf_settings.is_maxsurf)
+            self.assertGreater(data.maxsurf_settings.lbp, 5.0)
+            self.assertGreater(data.maxsurf_settings.grid_sections_count, 5)
+            self.assertGreater(data.maxsurf_settings.draft, 0.1)
+            self.assertGreater(data.hydrostatics.displacement_tonnes, 0.0)
+        else:
+            # Test native fallback parser with mock binary content
+            mock_bytes = b"\x0b=A \x00\x00\x00\x00st 1\x00st 2\x00Hull\x00" + b"\x00" * 200
+            data = LinesPlanService.parse_uploaded_file("TestModel.msd", mock_bytes)
+            self.assertIsNotNone(data.maxsurf_settings)
+            self.assertTrue(data.maxsurf_settings.is_maxsurf)
+            self.assertGreater(data.maxsurf_settings.lbp, 0.0)
+
 
 if __name__ == "__main__":
     unittest.main()
